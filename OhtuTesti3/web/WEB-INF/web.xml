@@ -1,0 +1,20 @@
+<web-app>
+<display-name>Welcome to Tomcat</display-name>
+<description>Welcome to Tomcat</description>
+<servlet>
+<servlet-name>PgTesti2</servlet-name>
+<servlet-class>PgTesti2</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>OhtuTesti3</servlet-name>
+<servlet-class>OhtuTesti3</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>PgTesti2</servlet-name>
+<url-pattern>/servlet/PgTesti2</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>OhtuTesti3</servlet-name>
+<url-pattern>/servlet/OhtuTesti3</url-pattern>
+</servlet-mapping>
+</web-app>
