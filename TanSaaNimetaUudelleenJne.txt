@@ -1,0 +1,13 @@
+t‰h‰n ois hyv‰ listaa varmaan ne user storyt ja sit teh‰ lopuks niist‰ joku burndown jutska:
+(HUOM. t‰‰ ei oo mik‰‰ lopullinen versio, kunhan tein t‰ll‰sen)
+				
+		    26.3.2013  30.3.2013
+- BibTex tGenerator    2h          1h
+- lis‰ilk‰‰ n‰it..
+
+
+
+
+
+Sprintin 1 backlog:
+- BibText Generator

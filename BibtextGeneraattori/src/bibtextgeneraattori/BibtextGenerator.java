@@ -1,9 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package bibtextgeneraattori;
 
+import bibtextgeneraattori.generators.ArticleGenerator;
+import bibtextgeneraattori.generators.InproceedingsGenerator;
+import bibtextgeneraattori.generators.BookGenerator;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,13 +11,12 @@ import java.util.Scanner;
 
 /**
  * Olettaa, että pakolliset kentät eivät ole tyhjiä
- * 
+ *
  */
 public class BibtextGenerator {
 
     Scanner lukija = new Scanner(System.in);
     private String tyyppi; // kirja, artikkeli, inproceeding
-                               
     public String Tunnus = "";
     public String Author = "";
     public String Title = "";
@@ -37,6 +35,11 @@ public class BibtextGenerator {
     public String Edition = "";
     public String Editor = "";
     public String Organization = "";
+    public String Howpublished = "";
+    public String Chapter = "";
+    public String Type = "";
+    public String School = "";
+    public String Institution = "";
     PrintWriter out;
     File file;
 
@@ -48,15 +51,15 @@ public class BibtextGenerator {
     public void generoiBibtext() {
 
         if (tyyppi.equals("kirja")) {
-            GeneroiKirja gk = new GeneroiKirja(out, this);
+            BookGenerator gk = new BookGenerator(out, this);
             gk.generoi();
         }
         if (tyyppi.equals("artikkeli")) {
-            GeneroiArtikkeli ga = new GeneroiArtikkeli(out, this);
+            ArticleGenerator ga = new ArticleGenerator(out, this);
             ga.generoi();
         }
         if (tyyppi.equals("inproceeding")) {
-            GeneroiInproceeding gi = new GeneroiInproceeding(out, this);
+            InproceedingsGenerator gi = new InproceedingsGenerator(out, this);
             gi.generoi();
         }
     }
@@ -71,9 +74,10 @@ public class BibtextGenerator {
     }
 
     private void luoTextFile() {
-        File dir = new File("/cs/fs/home/joeniemi/GithubProjects/pro-ada/BibtextGeneraattori");
-        dir.mkdirs(); // tekee polun (siis kansiot yms) jos niitä ei ole
-        this.file = new File(dir, "viitetiedosto.txt");
+//        File dir = new File("/cs/fs/home/joeniemi/GithubProjects/pro-ada/BibtextGeneraattori");
+//        File dir = new File("/BibtextGenerator");
+//        dir.mkdirs(); // tekee polun (siis kansiot yms) jos niitä ei ole
+        this.file = new File("viitetiedosto.txt");
     }
 
     public void alustaTestejaVarten() {
@@ -83,6 +87,5 @@ public class BibtextGenerator {
         this.Title = "Clean Code: A Handbook of Agile Software Craftsmanship";
         this.Year = "2008";
         this.Publisher = "Prentice Hall";
-        this.Volume = "19";
     }
 }

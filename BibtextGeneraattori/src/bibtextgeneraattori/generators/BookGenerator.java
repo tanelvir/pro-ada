@@ -1,21 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package bibtextgeneraattori;
+package bibtextgeneraattori.generators;
 
+import bibtextgeneraattori.BibtextGenerator;
+import bibtextgeneraattori.TextGenerator;
 import java.io.PrintWriter;
 
-/**
- *
- * @author joeniemi
- */
-public class GeneroiKirja implements TextGenerator {
+public class BookGenerator implements TextGenerator {
 
     private PrintWriter out;
     private BibtextGenerator bg;
 
-    public GeneroiKirja(PrintWriter out, BibtextGenerator bg) {
+    public BookGenerator(PrintWriter out, BibtextGenerator bg) {
         this.out = out;
         this.bg = bg;
     }
@@ -29,7 +23,6 @@ public class GeneroiKirja implements TextGenerator {
         printtaa("publisher", bg.Publisher);
         printtaaEiPakollinen("volume", bg.Volume);
         printtaaEiPakollinen("number", bg.Number);
-        printtaaEiPakollinen("number", bg.Number);
         printtaaEiPakollinen("series", bg.Series);
         printtaaEiPakollinen("address", bg.Address);
         printtaaEiPakollinen("edition", bg.Edition);
@@ -42,7 +35,7 @@ public class GeneroiKirja implements TextGenerator {
 
     private void printtaaEiPakollinen(String nimi, String mita) {
         if (!mita.isEmpty()) {
-            printtaa("nimi", mita);
+            printtaa(nimi, mita);
         }
     }
 
