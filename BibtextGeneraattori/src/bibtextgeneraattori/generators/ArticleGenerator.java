@@ -1,16 +1,17 @@
 package bibtextgeneraattori.generators;
 
-import bibtextgeneraattori.BibtextGenerator;
+import bibtextgeneraattori.BibtexGenerator;
 import bibtextgeneraattori.TextGenerator;
 import java.io.PrintWriter;
 
 public class ArticleGenerator implements TextGenerator {
 
     private PrintWriter out;
-    private BibtextGenerator bg;
+    private BibtexGenerator bg;
 
-    public ArticleGenerator(PrintWriter out, BibtextGenerator bg) {
+    public ArticleGenerator(PrintWriter out, BibtexGenerator bg) {
         this.out = out;
+        this.bg = bg;
     }
 
     @Override
@@ -35,7 +36,6 @@ public class ArticleGenerator implements TextGenerator {
             printtaa(nimi, mita);
         }
     }
-
     private void printtaa(String nimi, String mita) {
         out.println(nimi + " = {" + mita + "},");
     }

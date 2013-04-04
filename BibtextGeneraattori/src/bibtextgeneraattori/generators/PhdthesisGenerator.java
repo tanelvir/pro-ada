@@ -1,22 +1,22 @@
 package bibtextgeneraattori.generators;
 
-import bibtextgeneraattori.BibtextGenerator;
+import bibtextgeneraattori.BibtexGenerator;
 import bibtextgeneraattori.TextGenerator;
 import java.io.PrintWriter;
 
 public class PhdthesisGenerator implements TextGenerator {
 
     private PrintWriter out;
-    private BibtextGenerator bg;
+    private BibtexGenerator bg;
 
-    public PhdthesisGenerator(PrintWriter out, BibtextGenerator bg) {
+    public PhdthesisGenerator(PrintWriter out, BibtexGenerator bg) {
         this.out = out;
         this.bg = bg;
     }
 
     @Override
     public void generoi() {
-        out.println("phdthesis@{" + bg.Tunnus + ",");
+        out.println("phdthesis@{" + bg.Tyyppi + ",");
         printtaa("author", bg.Author);
         printtaa("title", bg.Title);
         printtaa("school", bg.School);

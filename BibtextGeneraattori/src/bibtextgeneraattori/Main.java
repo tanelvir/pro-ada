@@ -4,7 +4,7 @@ package bibtextgeneraattori;
 public class Main {
     
     public static void main(String[] args) {
-    BibtextGenerator b = new BibtextGenerator();
+    BibtexGenerator b = new BibtexGenerator();
     b.alustaTestejaVarten();
     b.generoiBibtext();
     }

@@ -1,22 +1,22 @@
 package bibtextgeneraattori.generators;
 
-import bibtextgeneraattori.BibtextGenerator;
+import bibtextgeneraattori.BibtexGenerator;
 import bibtextgeneraattori.TextGenerator;
 import java.io.PrintWriter;
 
 public class MiscGenerator implements TextGenerator {
 
     private PrintWriter out;
-    private BibtextGenerator bg;
+    private BibtexGenerator bg;
 
-    public MiscGenerator(PrintWriter out, BibtextGenerator bg) {
+    public MiscGenerator(PrintWriter out, BibtexGenerator bg) {
         this.out = out;
         this.bg = bg;
     }
 
     @Override
     public void generoi() {
-        out.println("@misc{" + bg.Tunnus + ",");
+        out.println("@misc{" + bg.Tyyppi + ",");
         printtaaEiPakollinen("author", bg.Author);
         printtaaEiPakollinen("title", bg.Title);
         printtaaEiPakollinen("howpublished", bg.Howpublished);

@@ -1,22 +1,22 @@
 package bibtextgeneraattori.generators;
 
-import bibtextgeneraattori.BibtextGenerator;
+import bibtextgeneraattori.BibtexGenerator;
 import bibtextgeneraattori.TextGenerator;
 import java.io.PrintWriter;
 
 public class TechreportGenerator implements TextGenerator {
 
     private PrintWriter out;
-    private BibtextGenerator bg;
+    private BibtexGenerator bg;
 
-    public TechreportGenerator(PrintWriter out, BibtextGenerator bg) {
+    public TechreportGenerator(PrintWriter out, BibtexGenerator bg) {
         this.out = out;
         this.bg = bg;
     }
 
     @Override
     public void generoi() {
-        out.println("techreport@{" + bg.Tunnus + ",");
+        out.println("techreport@{" + bg.Tyyppi + ",");
         printtaa("author", bg.Author);
         printtaa("title", bg.Title);
         printtaa("institution", bg.Institution);
