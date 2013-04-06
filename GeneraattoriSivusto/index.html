@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->
+<html>
+    <head>
+        <title>BibTeX Generator</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>
+            BibTeX Generator
+        </h1>
+
+        <!-- Pudotusvalikko lomakkeen valitsemiseksi !-->
+        <div>
+            <br>
+            <p>Choose a form type:</p>
+            <Form Method ='Post' ACTION ='typeforwarding.php'>
+
+                <select name="type">
+                    <option value="article">Article</option>
+                    <option value="book">Book</option>
+                    <option value="booklet">Booklet</option>
+                    <option value="conference">Conference</option>
+                    <option value="inbook">Inbook</option>
+                    <option value="incollection">Incollection</option>
+                    <option value="inproceedings">Inproceedings</option>
+                    <option value="manual">Manual</option>
+                    <option value="mastersthesis">Master's Thesis</option>
+                    <option value="misc">Misc</option>
+                    <option value="phdthesis">Ph.D. Thesis</option>
+                    <option value="proceedings">Proceedings</option>
+                    <option value="techreport">Techreport</option>
+                    <option value="unpublished">Unpublished</option>
+                </select>
+
+                <Input type = 'Submit' Name = 'submit' Value = 'Choose'>
+
+            </form>
+        </div>
+
+        <!-- Testilinkki lomakkeeseen inproceedings !-->
+        <div>
+            <br><br>
+            <a>Testilinkki:</a>
+            <br>
+            <a href="inproceedings.html">inproceedings</a>
+        </div>
+
+    </body>
+</html>
