@@ -1,22 +1,20 @@
 package bibtextgeneraattori.generators;
 
 import bibtexgeneraattori.BibtexGenerator;
+import bibtexgeneraattori.BibtexPrinter;
 import bibtexgeneraattori.TextGenerator;
 import java.io.PrintWriter;
 
-public class IncollectionGenerator implements TextGenerator {
+public class IncollectionGenerator extends BibtexPrinter implements TextGenerator {
 
-    private PrintWriter out;
-    private BibtexGenerator bg;
-
-    public IncollectionGenerator(PrintWriter out, BibtexGenerator bg) {
-        this.out = out;
-        this.bg = bg;
+    public IncollectionGenerator(PrintWriter filuPrinter, PrintWriter sivuPrinter, BibtexGenerator bg) {
+        super(filuPrinter, sivuPrinter, bg);
     }
 
     @Override
     public void generoi() {
-        out.println("@incollection{" + bg.Tyyppi + ",");
+        sivuPrinter.println("@incollection{" + bg.Tyyppi + ",");
+        filuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
         printtaa("author", bg.Author);
         printtaa("title", bg.Title);
         printtaa("booktitle", bg.Booktitle);
@@ -34,19 +32,9 @@ public class IncollectionGenerator implements TextGenerator {
         printtaaEiPakollinen("month", bg.Month);
         printtaaEiPakollinen("note", bg.Note);
         printtaaEiPakollinen("key", bg.Key);
-        out.println("}");
+        sivuPrinter.println("}");
         if (bg.suljetaanko) {
-            out.close();
+            sivuPrinter.close();
         }
-    }
-
-    private void printtaaEiPakollinen(String nimi, String mita) {
-        if (!mita.isEmpty()) {
-            printtaa(nimi, mita);
-        }
-    }
-
-    private void printtaa(String nimi, String mita) {
-        out.println(nimi + " = {" + mita + "},");
     }
 }
