@@ -54,13 +54,18 @@ public class BibtexGenerator {
     PrintWriter PR;
     File file;
 
+    public boolean suljetaanko = false;
     // Annetaan taulukko, jossa:
     // taulu[0] = tunnus@GvG00
     // taulu[1] = author@kirjailija
     public BibtexGenerator(String tyyppi, String[] parametrit, PrintWriter pr) {
         this.Tyyppi = tyyppi;
         this.PR = pr;
+        
         luoTextFile();
+        if (PR == null) {
+            suljetaanko = true;
+        }
         // Luodaan oma printwritteri jos ei saatu sitä parametrinä
         if (this.PR == null) {
             luoPrintWriter();

@@ -32,7 +32,9 @@ public class InbookGenerator implements TextGenerator {
         printtaaEiPakollinen("note", bg.Note);
         printtaaEiPakollinen("key", bg.Key);
         out.println("}");
-        out.close();
+        if (bg.suljetaanko) {
+            out.close();
+        }
     }
 
     private void printtaaEiPakollinen(String nimi, String mita) {

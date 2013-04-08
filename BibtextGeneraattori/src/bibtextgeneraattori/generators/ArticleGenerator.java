@@ -28,7 +28,9 @@ public class ArticleGenerator implements TextGenerator {
         printtaaEiPakollinen("note", bg.Edition);
         printtaaEiPakollinen("key", bg.Month);
         out.println("}");
-        out.close();
+        if (bg.suljetaanko) {
+            out.close();
+        }
     }
 
     private void printtaaEiPakollinen(String nimi, String mita) {
@@ -36,6 +38,7 @@ public class ArticleGenerator implements TextGenerator {
             printtaa(nimi, mita);
         }
     }
+
     private void printtaa(String nimi, String mita) {
         out.println(nimi + " = {" + mita + "},");
     }
