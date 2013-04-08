@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import bibtexgeneraattori.BibtexGenerator;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,24 +33,33 @@ public class Inproceedings extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         Map<String, String[]> params = request.getParameterMap();
+        
+        String author = request.getParameter("author");
+        String title = request.getParameter("title");
+        String booktitle = request.getParameter("book title");
+        String year = request.getParameter("year");
+        String[] parametrit = new String[] {"author@"+author, "title@"+title, "booktitle@"+booktitle, "year@"+year};
+        
         PrintWriter out = response.getWriter();
+        BibtexGenerator bibi = new BibtexGenerator("inproceedings", parametrit, out);
         try {
             /* TODO output your page here. You may use following sample code. */
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Inproceedings</title>");            
+//            out.println("<title>Servlet Inproceedings</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Inproceedings at " + request.getContextPath() + "</h1>");
-            for (Map.Entry<String, String[]> param : params.entrySet()) {
-                out.println("key: "+param.getKey());
-                out.println("<br>");
-                out.println("value(s): ");
-                for (String value : param.getValue()) {
-                    out.print(value+", ");
-                }
-                out.println("<br>----<br>");
-            }
+            out.println();
+            bibi.generoiBibtext();
+//            for (Map.Entry<String, String[]> param : params.entrySet()) {
+//                out.println("key: "+param.getKey());
+//                out.println("<br>");
+//                out.println("value(s): ");
+//                for (String value : param.getValue()) {
+//                    out.print(value+", ");
+//                }
+//                out.println("<br>----<br>");
+//            }
             out.println("</body>");
             out.println("</html>");
         } finally {            
