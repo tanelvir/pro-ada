@@ -51,14 +51,20 @@ public class BibtexGenerator {
     public String Type = "";
     public String School = "";
     public String Institution = "";
-    PrintWriter out;
+    PrintWriter PR;
     File file;
 
     // Annetaan taulukko, jossa:
     // taulu[0] = tunnus@GvG00
     // taulu[1] = author@kirjailija
-    public BibtexGenerator(String tyyppi, String[] parametrit) {
+    public BibtexGenerator(String tyyppi, String[] parametrit, PrintWriter pr) {
         this.Tyyppi = tyyppi;
+        this.PR = pr;
+        // Luodaan oma printwritteri jos ei saatu sitä parametrinä
+        if (this.PR == null) {
+          luoPrintWriter();
+        }
+        luoTextFile();
         for (int i = 0; i < parametrit.length; i++) {
             // Jos taulussa on ylimääräisiä tyhjiä rivejä, lopetetaan
             if (parametrit[i] == null) {
@@ -68,11 +74,6 @@ public class BibtexGenerator {
             String lisattavanArvo = checkArvo(parametrit[i]);
             lisaaParametri(lisattavanTyyppi, lisattavanArvo);
         }
-
-
-
-        luoTextFile();
-        luoTextWriter();
     }
 
     private void lisaaParametri(String tyyppi, String arvo) {
@@ -194,7 +195,7 @@ public class BibtexGenerator {
             }
         }
 
-        for (int i = indeksi+1; i < rivi.length(); i++) {
+        for (int i = indeksi + 1; i < rivi.length(); i++) {
             arvo += rivi.charAt(i);
         }
         return arvo;
@@ -203,68 +204,69 @@ public class BibtexGenerator {
     public void generoiBibtext() {
         switch (Tyyppi) {
             case "article": {
-                new ArticleGenerator(out, this).generoi();
+                new ArticleGenerator(PR, this).generoi();
                 break;
             }
             case "book": {
-                new BookGenerator(out, this).generoi();
+                new BookGenerator(PR, this).generoi();
                 break;
             }
             case "booklet": {
-                new BookletGenerator(out, this).generoi();
+                new BookletGenerator(PR, this).generoi();
                 break;
             }
             case "conference": {
-                new ConferenceGenerator(out, this).generoi();
+                new ConferenceGenerator(PR, this).generoi();
                 break;
             }
             case "inbook": {
-                new InbookGenerator(out, this).generoi();
+                new InbookGenerator(PR, this).generoi();
                 break;
             }
             case "incollection": {
-                new IncollectionGenerator(out, this).generoi();
+                new IncollectionGenerator(PR, this).generoi();
                 break;
             }
             case "inproceedings": {
-                new InproceedingsGenerator(out, this).generoi();
+                new InproceedingsGenerator(PR, this).generoi();
                 break;
             }
             case "manual": {
-                new ManualGenerator(out, this).generoi();
+                new ManualGenerator(PR, this).generoi();
                 break;
             }
             case "mastersthesis": {
-                new MastersthesisGenerator(out, this).generoi();
+                new MastersthesisGenerator(PR, this).generoi();
                 break;
             }
             case "misc": {
-                new MiscGenerator(out, this).generoi();
+                new MiscGenerator(PR, this).generoi();
                 break;
             }
             case "phdthesis": {
-                new PhdthesisGenerator(out, this).generoi();
+                new PhdthesisGenerator(PR, this).generoi();
                 break;
             }
             case "proceedings": {
-                new ProceedingsGenerator(out, this).generoi();
+                new ProceedingsGenerator(PR, this).generoi();
                 break;
             }
             case "techreport": {
-                new TechreportGenerator(out, this).generoi();
+                new TechreportGenerator(PR, this).generoi();
                 break;
             }
             case "unpublished": {
-                new UnpublishedGenerator(out, this).generoi();
+                new UnpublishedGenerator(PR, this).generoi();
                 break;
             }
         }
     }
 
-    private void luoTextWriter() {
+
+    private void luoPrintWriter() {
 
         try {
-            this.out = new PrintWriter(new FileWriter(file));
+            this.PR = new PrintWriter(new FileWriter(file));
         } catch (IOException e) {
             System.out.println("tekstitiedoston polkua ei löytynyt tms");
         }
