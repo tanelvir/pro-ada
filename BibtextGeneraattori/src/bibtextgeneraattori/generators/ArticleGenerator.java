@@ -24,7 +24,7 @@ public class ArticleGenerator implements TextGenerator {
         printtaaEiPakollinen("volume", bg.Volume);
         printtaaEiPakollinen("number", bg.Number);
         printtaaEiPakollinen("pages", bg.Series);
-        printtaaEiPakollinen("month", bg.Address);
+        printtaaEiPakollinen("address", bg.Address);
         printtaaEiPakollinen("note", bg.Edition);
         printtaaEiPakollinen("key", bg.Month);
         out.println("}");

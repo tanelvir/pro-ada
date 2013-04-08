@@ -52,10 +52,11 @@ public class BibtexGeneratorTest extends TestCase {
         assertEquals("volume = {19},", r);
         r = lukija.nextLine();
         assertEquals("number = {5},", r);
-        r = lukija.nextLine();
-        assertEquals("pages = {249--259},", r);
-        r = lukija.nextLine();
-        assertEquals("publisher = {Consortium for Computing Sciences in Colleges},", r);
+        // "extroja:"
+//        r = lukija.nextLine();
+//        assertEquals("pages = {249--259},", r);
+//        r = lukija.nextLine();
+//        assertEquals("publisher = {Consortium for Computing Sciences in Colleges},", r);
         r = lukija.nextLine();
         assertEquals("address = {USA},", r);
         r = lukija.nextLine();

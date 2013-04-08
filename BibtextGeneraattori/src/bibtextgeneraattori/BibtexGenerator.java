@@ -54,9 +54,140 @@ public class BibtexGenerator {
     PrintWriter out;
     File file;
 
-    public BibtexGenerator() {
+    // Annetaan taulukko, jossa:
+    // taulu[0] = tunnus@GvG00
+    // taulu[1] = author@kirjailija
+    public BibtexGenerator(String tyyppi, String[] parametrit) {
+        this.Tyyppi = tyyppi;
+        for (int i = 0; i < parametrit.length; i++) {
+            String lisattavanTyyppi = checkTyyppi(parametrit[i]);
+            String lisattavanArvo = checkArvo(parametrit[i]);
+            lisaaParametri(lisattavanTyyppi, lisattavanArvo);
+        }
+
+
+
         luoTextFile();
         luoTextWriter();
+    }
+
+    private void lisaaParametri(String tyyppi, String arvo) {
+        switch (tyyppi) {
+            case "tunnus": {
+                this.Tyyppi = arvo;
+                break;
+            }
+            case "author": {
+                this.Author = arvo;
+                break;
+            }
+            case "title": {
+                this.Title = arvo;
+                break;
+            }
+            case "publisher": {
+                this.Publisher = arvo;
+                break;
+            }
+            case "address": {
+                this.Address = arvo;
+                break;
+            }
+            case "journal": {
+                this.Journal = arvo;
+                break;
+            }
+            case "pages": {
+                this.Pages = arvo;
+                break;
+            }
+            case "booktitle": {
+                this.Booktitle = arvo;
+                break;
+            }
+            case "note": {
+                this.Note = arvo;
+                break;
+            }
+            case "year": {
+                this.Year = arvo;
+                break;
+            }
+            case "volume": {
+                this.Volume = arvo;
+                break;
+            }
+            case "number": {
+                this.Number = arvo;
+                break;
+            }
+            case "month": {
+                this.Month = arvo;
+                break;
+            }
+            case "key": {
+                this.Key = arvo;
+                break;
+            }
+            case "series": {
+                this.Series = arvo;
+                break;
+            }
+            case "edition": {
+                this.Edition = arvo;
+                break;
+            }
+            case "editor": {
+                this.Editor = arvo;
+                break;
+            }
+            case "organization": {
+                this.Organization = arvo;
+                break;
+            }
+            case "howpublished": {
+                this.Howpublished = arvo;
+                break;
+            }
+            case "chapter": {
+                this.Chapter = arvo;
+                break;
+            }
+            case "type": {
+                this.Type = arvo;
+                break;
+            }
+            case "school": {
+                this.School = arvo;
+                break;
+            }
+            case "institution": {
+                this.Institution = arvo;
+                break;
+            }
+        }
+    }
+
+    private String checkTyyppi(String rivi) {
+        String tyyppi = "";
+        for (int i = 0; i < rivi.length(); i++) {
+            if (rivi.charAt(i) == '@') {
+                break;
+            }
+            tyyppi += rivi.charAt(i);
+        }
+        return tyyppi;
+    }
+
+    private String checkArvo(String rivi) {
+        String arvo = "";
+        for (int i = rivi.length() - 1; i >= 0; i--) {
+            if (rivi.charAt(i) == '@') {
+                break;
+            }
+            arvo += rivi.charAt(i);
+        }
+        return arvo;
     }
 
     public void generoiBibtext() {
@@ -189,3 +320,9 @@ public class BibtexGenerator {
 //            UnpublishedGenerator BG = new UnpublishedGenerator(out, this);
 //            BG.generoi();
 //        }
+//
+//String tyyppi, String tunnus, String author, String title,
+//            String publisher, String address, String journal, String pages, String booktitle,
+//            String note, String year, String volume, String number, String month, String key,
+//            String series, String edition, String editor, String organization, String howpublished,
+//            String chapter, String type, String school, String institution
