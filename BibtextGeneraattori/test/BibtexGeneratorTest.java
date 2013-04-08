@@ -15,18 +15,17 @@ public class BibtexGeneratorTest extends TestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        BibtexGenerator bg = new BibtexGenerator();
-        bg.Tyyppi = "article";
-        bg.Tunnus = "W04";
-        bg.Author = "Whittington, Keith J.";
-        bg.Title = "Infusing active learning into introductory programming courses";
-        bg.Journal = "J. Comput. Small Coll.";
-        bg.Volume = "19";
-        bg.Number = "5";
-        bg.Year = "2004";
-        bg.Pages = "249--259";
-        bg.Publisher = "Consortium for Computing Sciences in Colleges";
-        bg.Address = "USA";
+        String tyyppi = "article";
+        String[] taulu = new String[10];
+        taulu[0] = "tunnus@W04";
+        taulu[1] = "author@Whittington, Keith J.";
+        taulu[2] = "title@Infusing active learning into introductory programming courses";
+        taulu[3] = "journal@J. Comput. Small Coll.";
+        taulu[4] = "year@2004";
+        taulu[5] = "volume@19";
+        taulu[6] = "number@5";
+        taulu[7] = "address@USA";
+        BibtexGenerator bg = new BibtexGenerator(tyyppi, taulu);
         bg.generoiBibtext();
         File filu = new File("viitetiedosto.txt");
         this.lukija = new Scanner(filu);

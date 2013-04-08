@@ -60,6 +60,10 @@ public class BibtexGenerator {
     public BibtexGenerator(String tyyppi, String[] parametrit) {
         this.Tyyppi = tyyppi;
         for (int i = 0; i < parametrit.length; i++) {
+            // Jos taulussa on ylimääräisiä tyhjiä rivejä, lopetetaan
+            if (parametrit[i] == null) {
+                break;
+            }
             String lisattavanTyyppi = checkTyyppi(parametrit[i]);
             String lisattavanArvo = checkArvo(parametrit[i]);
             lisaaParametri(lisattavanTyyppi, lisattavanArvo);
@@ -74,7 +78,7 @@ public class BibtexGenerator {
     private void lisaaParametri(String tyyppi, String arvo) {
         switch (tyyppi) {
             case "tunnus": {
-                this.Tyyppi = arvo;
+                this.Tunnus = arvo;
                 break;
             }
             case "author": {
@@ -181,10 +185,16 @@ public class BibtexGenerator {
 
     private String checkArvo(String rivi) {
         String arvo = "";
-        for (int i = rivi.length() - 1; i >= 0; i--) {
+        int indeksi = 0;
+        // ensin katsotaan, mistä kohtaa @ löytyy
+        for (int i = 0; i < rivi.length() - 1; i++) {
             if (rivi.charAt(i) == '@') {
+                indeksi = i;
                 break;
             }
+        }
+
+        for (int i = indeksi+1; i < rivi.length(); i++) {
             arvo += rivi.charAt(i);
         }
         return arvo;
