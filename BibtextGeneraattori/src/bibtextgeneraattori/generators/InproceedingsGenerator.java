@@ -6,17 +6,20 @@ import java.io.PrintWriter;
 
 public class InproceedingsGenerator implements TextGenerator {
 
-    private PrintWriter out;
+    private PrintWriter sivuPrinter;
+    private PrintWriter filuPrinter;
     private BibtexGenerator bg;
+    
 
-    public InproceedingsGenerator(PrintWriter out, BibtexGenerator bg) {
-        this.out = out;
+    public InproceedingsGenerator(PrintWriter filuPrinter, PrintWriter out, BibtexGenerator bg) {
+        this.sivuPrinter = out;
+        this.filuPrinter = filuPrinter;
         this.bg = bg;
     }
 
     @Override
     public void generoi() {
-        out.println("inproceedings@{" + bg.Tyyppi + ",");
+        sivuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
         printtaa("author", bg.Author);
         printtaa("title", bg.Title);
         printtaa("booktitle", bg.Year);
@@ -32,9 +35,9 @@ public class InproceedingsGenerator implements TextGenerator {
         printtaaEiPakollinen("publisher", bg.Publisher);
         printtaaEiPakollinen("note", bg.Note);
         printtaaEiPakollinen("key", bg.Key);
-        out.println("}");
+        sivuPrinter.println("}");
         if (bg.suljetaanko) {
-            out.close();
+            sivuPrinter.close();
         }
     }
 
@@ -45,6 +48,7 @@ public class InproceedingsGenerator implements TextGenerator {
     }
 
     private void printtaa(String nimi, String mita) {
-        out.println(nimi + " = {" + mita + "},");
+        sivuPrinter.println(nimi + " = {" + mita + "},");
+        filuPrinter.println(nimi + " = {" + mita + "},");
     }
 }
