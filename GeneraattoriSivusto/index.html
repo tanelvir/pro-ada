@@ -5,18 +5,13 @@
         <title>BibTeX Generator</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <script src="jquery-1.9.0.min.js"></script>
-
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script type="text/javascript">
-
+            
+            
             function muutos(){
-                //tässä nyt lhttp://example.com
-                //var urlBegin="http://example.com/";
-                var urlBegin="";
-                //otetaan valitun optionin value talteen
                 var value = $('#theSelect option:selected').attr('value');
-                var completeUrl = urlBegin+value+'.html';
-                //asetetaan completeUrl muuttujaan koottu uusi actionin url formille
+                var completeUrl = value+'.html';
                 $("#myform").attr("action", completeUrl);
             }
 
@@ -32,10 +27,8 @@
         <div>
             <br>
             <p>Choose a form type:</p>
-            <Form id="myform" action="alkuarvo" Method ="post" accept-charset="utf-8">
+            <Form id="myform" action="article.html" Method ="post" accept-charset="utf-8">
 
-                <!--id="myform" action="alkuarvo" method="get" accept-charset="utf-8"-->
-                
                 <select id="theSelect" onchange="muutos()">
                     <option value="article">Article</option>
                     <option value="book">Book</option>
