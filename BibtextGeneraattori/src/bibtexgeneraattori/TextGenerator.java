@@ -1,5 +1,5 @@
 
-package bibtextgeneraattori;
+package bibtexgeneraattori;
 
 public interface TextGenerator {
     

@@ -1,7 +1,7 @@
 package bibtextgeneraattori.generators;
 
-import bibtextgeneraattori.BibtexGenerator;
-import bibtextgeneraattori.TextGenerator;
+import bibtexgeneraattori.BibtexGenerator;
+import bibtexgeneraattori.TextGenerator;
 import java.io.PrintWriter;
 
 public class BookGenerator implements TextGenerator {
@@ -30,7 +30,9 @@ public class BookGenerator implements TextGenerator {
         printtaaEiPakollinen("note", bg.Note);
         printtaaEiPakollinen("key", bg.Key);
         out.println("}");
-        out.close();
+        if (bg.suljetaanko) {
+            out.close();
+        }
     }
 
     private void printtaaEiPakollinen(String nimi, String mita) {
