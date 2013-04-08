@@ -1,5 +1,5 @@
 
-import bibtextgeneraattori.BibtexGenerator;
+import bibtexgeneraattori.BibtexGenerator;
 import java.io.File;
 import java.util.Scanner;
 import junit.framework.TestCase;
@@ -25,7 +25,7 @@ public class BibtexGeneratorTest extends TestCase {
         taulu[5] = "volume@19";
         taulu[6] = "number@5";
         taulu[7] = "address@USA";
-        BibtexGenerator bg = new BibtexGenerator(tyyppi, taulu);
+        BibtexGenerator bg = new BibtexGenerator(tyyppi, taulu, null);
         bg.generoiBibtext();
         File filu = new File("viitetiedosto.txt");
         this.lukija = new Scanner(filu);

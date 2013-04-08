@@ -1,4 +1,4 @@
-package bibtextgeneraattori;
+package bibtexgeneraattori;
 
 public class Main {
 

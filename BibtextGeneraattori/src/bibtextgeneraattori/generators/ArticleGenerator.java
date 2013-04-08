@@ -1,7 +1,7 @@
 package bibtextgeneraattori.generators;
 
-import bibtextgeneraattori.BibtexGenerator;
-import bibtextgeneraattori.TextGenerator;
+import bibtexgeneraattori.BibtexGenerator;
+import bibtexgeneraattori.TextGenerator;
 import java.io.PrintWriter;
 
 public class ArticleGenerator implements TextGenerator {

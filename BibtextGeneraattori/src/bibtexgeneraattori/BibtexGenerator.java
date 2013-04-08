@@ -1,4 +1,4 @@
-package bibtextgeneraattori;
+package bibtexgeneraattori;
 
 import bibtextgeneraattori.generators.ArticleGenerator;
 import bibtextgeneraattori.generators.InproceedingsGenerator;
@@ -60,11 +60,11 @@ public class BibtexGenerator {
     public BibtexGenerator(String tyyppi, String[] parametrit, PrintWriter pr) {
         this.Tyyppi = tyyppi;
         this.PR = pr;
+        luoTextFile();
         // Luodaan oma printwritteri jos ei saatu sitä parametrinä
         if (this.PR == null) {
-          luoPrintWriter();
+            luoPrintWriter();
         }
-        luoTextFile();
         for (int i = 0; i < parametrit.length; i++) {
             // Jos taulussa on ylimääräisiä tyhjiä rivejä, lopetetaan
             if (parametrit[i] == null) {
@@ -77,99 +77,52 @@ public class BibtexGenerator {
     }
 
     private void lisaaParametri(String tyyppi, String arvo) {
-        switch (tyyppi) {
-            case "tunnus": {
-                this.Tunnus = arvo;
-                break;
-            }
-            case "author": {
-                this.Author = arvo;
-                break;
-            }
-            case "title": {
-                this.Title = arvo;
-                break;
-            }
-            case "publisher": {
-                this.Publisher = arvo;
-                break;
-            }
-            case "address": {
-                this.Address = arvo;
-                break;
-            }
-            case "journal": {
-                this.Journal = arvo;
-                break;
-            }
-            case "pages": {
-                this.Pages = arvo;
-                break;
-            }
-            case "booktitle": {
-                this.Booktitle = arvo;
-                break;
-            }
-            case "note": {
-                this.Note = arvo;
-                break;
-            }
-            case "year": {
-                this.Year = arvo;
-                break;
-            }
-            case "volume": {
-                this.Volume = arvo;
-                break;
-            }
-            case "number": {
-                this.Number = arvo;
-                break;
-            }
-            case "month": {
-                this.Month = arvo;
-                break;
-            }
-            case "key": {
-                this.Key = arvo;
-                break;
-            }
-            case "series": {
-                this.Series = arvo;
-                break;
-            }
-            case "edition": {
-                this.Edition = arvo;
-                break;
-            }
-            case "editor": {
-                this.Editor = arvo;
-                break;
-            }
-            case "organization": {
-                this.Organization = arvo;
-                break;
-            }
-            case "howpublished": {
-                this.Howpublished = arvo;
-                break;
-            }
-            case "chapter": {
-                this.Chapter = arvo;
-                break;
-            }
-            case "type": {
-                this.Type = arvo;
-                break;
-            }
-            case "school": {
-                this.School = arvo;
-                break;
-            }
-            case "institution": {
-                this.Institution = arvo;
-                break;
-            }
+        if (tyyppi.equals("tunnus")) {
+            this.Tunnus = arvo;
+        } else if (tyyppi.equals("author")) {
+            this.Author = arvo;
+        } else if (tyyppi.equals("title")) {
+            this.Title = arvo;
+        } else if (tyyppi.equals("publisher")) {
+            this.Publisher = arvo;
+        } else if (tyyppi.equals("address")) {
+            this.Address = arvo;
+        } else if (tyyppi.equals("journal")) {
+            this.Journal = arvo;
+        } else if (tyyppi.equals("pages")) {
+            this.Pages = arvo;
+        } else if (tyyppi.equals("booktitle")) {
+            this.Booktitle = arvo;
+        } else if (tyyppi.equals("note")) {
+            this.Note = arvo;
+        } else if (tyyppi.equals("year")) {
+            this.Year = arvo;
+        } else if (tyyppi.equals("volume")) {
+            this.Volume = arvo;
+        } else if (tyyppi.equals("number")) {
+            this.Number = arvo;
+        } else if (tyyppi.equals("month")) {
+            this.Month = arvo;
+        } else if (tyyppi.equals("key")) {
+            this.Key = arvo;
+        } else if (tyyppi.equals("series")) {
+            this.Series = arvo;
+        } else if (tyyppi.equals("edition")) {
+            this.Edition = arvo;
+        } else if (tyyppi.equals("editor")) {
+            this.Editor = arvo;
+        } else if (tyyppi.equals("organization")) {
+            this.Organization = arvo;
+        } else if (tyyppi.equals("howpublished")) {
+            this.Howpublished = arvo;
+        } else if (tyyppi.equals("chapter")) {
+            this.Chapter = arvo;
+        } else if (tyyppi.equals("type")) {
+            this.Type = arvo;
+        } else if (tyyppi.equals("school")) {
+            this.School = arvo;
+        } else if (tyyppi.equals("institution")) {
+            this.Institution = arvo;
         }
     }
 
@@ -202,66 +155,50 @@ public class BibtexGenerator {
     }
 
     public void generoiBibtext() {
-        switch (Tyyppi) {
-            case "article": {
-                new ArticleGenerator(PR, this).generoi();
-                break;
-            }
-            case "book": {
-                new BookGenerator(PR, this).generoi();
-                break;
-            }
-            case "booklet": {
-                new BookletGenerator(PR, this).generoi();
-                break;
-            }
-            case "conference": {
-                new ConferenceGenerator(PR, this).generoi();
-                break;
-            }
-            case "inbook": {
-                new InbookGenerator(PR, this).generoi();
-                break;
-            }
-            case "incollection": {
-                new IncollectionGenerator(PR, this).generoi();
-                break;
-            }
-            case "inproceedings": {
-                new InproceedingsGenerator(PR, this).generoi();
-                break;
-            }
-            case "manual": {
-                new ManualGenerator(PR, this).generoi();
-                break;
-            }
-            case "mastersthesis": {
-                new MastersthesisGenerator(PR, this).generoi();
-                break;
-            }
-            case "misc": {
-                new MiscGenerator(PR, this).generoi();
-                break;
-            }
-            case "phdthesis": {
-                new PhdthesisGenerator(PR, this).generoi();
-                break;
-            }
-            case "proceedings": {
-                new ProceedingsGenerator(PR, this).generoi();
-                break;
-            }
-            case "techreport": {
-                new TechreportGenerator(PR, this).generoi();
-                break;
-            }
-            case "unpublished": {
-                new UnpublishedGenerator(PR, this).generoi();
-                break;
-            }
+        if (Tyyppi.equals("article")) {
+            ArticleGenerator BG = new ArticleGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("book")) {
+            BookGenerator BG = new BookGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("booklet")) {
+            BookletGenerator BG = new BookletGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("conference")) {
+            ConferenceGenerator BG = new ConferenceGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("inbook")) {
+            InbookGenerator BG = new InbookGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("incollection")) {
+            IncollectionGenerator BG = new IncollectionGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("inproceedings")) {
+            InproceedingsGenerator BG = new InproceedingsGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("manual")) {
+            ManualGenerator BG = new ManualGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("mastersthesis")) {
+            MastersthesisGenerator BG = new MastersthesisGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("misc")) {
+            MiscGenerator BG = new MiscGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("phdthesis")) {
+            PhdthesisGenerator BG = new PhdthesisGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("proceedings")) {
+            ProceedingsGenerator BG = new ProceedingsGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("techreport")) {
+            TechreportGenerator BG = new TechreportGenerator(PR, this);
+            BG.generoi();
+        } else if (Tyyppi.equals("unpublished")) {
+            UnpublishedGenerator BG = new UnpublishedGenerator(PR, this);
+            BG.generoi();
         }
     }
-
 
     private void luoPrintWriter() {
 
