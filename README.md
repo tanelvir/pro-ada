@@ -1,3 +1,6 @@
+Jenkins url:
+http://t-tanelvir.users.cs.helsinki.fi/jenkins/job/OhtuServlet/
+
 Product Backlog
 - vaatimukset kirjataan User Story:inä
 - https://docs.google.com/document/d/1ewQw-14b5wM9KZBLGXhVQrXW80loAKJtr7SNQicihnA/edit?usp=sharing
