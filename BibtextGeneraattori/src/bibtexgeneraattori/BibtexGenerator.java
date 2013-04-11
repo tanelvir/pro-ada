@@ -59,18 +59,19 @@ public class BibtexGenerator {
     // taulu[0] = tunnus@GvG00
     // taulu[1] = author@kirjailija
 
-    public BibtexGenerator(String tyyppi, String[] parametrit, PrintWriter pr) {
+    public BibtexGenerator(String tyyppi, String[] parametrit, PrintWriter sivuPrinter) {
         this.Tyyppi = tyyppi;
-        this.sivuPrinter = pr;
+        this.sivuPrinter = sivuPrinter;
 
         luoTextFile();
         luoFiluPrinter();
-        if (sivuPrinter == null) {
+        if (sivuPrinter != null) {
             suljetaanko = true;
         }
         // Luodaan oma printwritteri jos ei saatu sitä parametrinä
         if (this.sivuPrinter == null) {
-            luoSivuPrinter();
+            System.out.println("sivu printteriä ei annettu");
+//            luoSivuPrinter();
         }
         for (int i = 0; i < parametrit.length; i++) {
             // Jos taulussa on ylimääräisiä tyhjiä rivejä, lopetetaan
@@ -220,7 +221,8 @@ public class BibtexGenerator {
     private void luoFiluPrinter() {
 
         try {
-            this.filuPrinter = new PrintWriter(new FileWriter(file));
+//            this.filuPrinter = new PrintWriter(new FileWriter(file));
+            this.filuPrinter = new PrintWriter(file);
         } catch (IOException e) {
             System.out.println("tekstitiedoston polkua ei löytynyt tms");
         }
@@ -228,7 +230,7 @@ public class BibtexGenerator {
 
     private void luoTextFile() {
 //        File dir = new File("/cs/fs/home/joeniemi/GithubProjects/pro-ada/BibtextGeneraattori");
-//        File dir = new File("/BibtextGenerator");
+//        File dir = new File("/Bibtexs");
 //        dir.mkdirs(); // tekee polun (siis kansiot yms) jos niitä ei ole
         this.file = new File("viitetiedosto.txt");
     }

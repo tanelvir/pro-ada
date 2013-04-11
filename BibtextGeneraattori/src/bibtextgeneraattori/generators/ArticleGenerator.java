@@ -13,7 +13,7 @@ public class ArticleGenerator extends BibtexPrinter implements TextGenerator {
 
     @Override
     public void generoi() {
-        sivuPrinter.println("@article{" + bg.Tunnus + ",");
+        sivuPrinter.println("article@{" + bg.Tunnus + ",");
         filuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
         printtaa("author", bg.Author);
         printtaa("title", bg.Title);

@@ -14,8 +14,7 @@ public class InproceedingsGenerator extends BibtexPrinter implements TextGenerat
 
     @Override
     public void generoi() {
-        sivuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
-        filuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
+        printtaaTyyppi(bg.Tyyppi);
         printtaa("author", bg.Author);
         printtaa("title", bg.Title);
         printtaa("booktitle", bg.Year);
@@ -31,9 +30,7 @@ public class InproceedingsGenerator extends BibtexPrinter implements TextGenerat
         printtaaEiPakollinen("publisher", bg.Publisher);
         printtaaEiPakollinen("note", bg.Note);
         printtaaEiPakollinen("key", bg.Key);
-        sivuPrinter.println("}");
-        if (bg.suljetaanko) {
-            sivuPrinter.close();
-        }
+        printtaaAaltosulku();
+        suljePrintterit();
     }
 }

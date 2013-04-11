@@ -7,8 +7,8 @@ public class BibtexPrinter {
     public PrintWriter sivuPrinter;
     public PrintWriter filuPrinter;
     public BibtexGenerator bg;
-    
-    public BibtexPrinter(PrintWriter sivuPrinter, PrintWriter filuPrinter, BibtexGenerator bg) {
+
+    public BibtexPrinter(PrintWriter filuPrinter, PrintWriter sivuPrinter, BibtexGenerator bg) {
         this.sivuPrinter = sivuPrinter;
         this.filuPrinter = filuPrinter;
         this.bg = bg;
@@ -22,7 +22,30 @@ public class BibtexPrinter {
     }
 
     public void printtaa(String nimi, String mita) {
-        sivuPrinter.println(nimi + " = {" + mita + "},");
+        if (sivuPrinter != null) {
+            sivuPrinter.println(nimi + " = {" + mita + "},");
+        }
         filuPrinter.println(nimi + " = {" + mita + "},");
+    }
+
+    public void printtaaTyyppi(String tyyppi) {
+        if (sivuPrinter != null) {
+            sivuPrinter.println(tyyppi + "@{" + tyyppi + ".");
+        }
+        filuPrinter.println(tyyppi + "@{" + tyyppi + ".");
+    }
+
+    public void printtaaAaltosulku() {
+        if (sivuPrinter != null) {
+            sivuPrinter.println("}");
+        }
+        filuPrinter.println("}");
+    }
+
+    public void suljePrintterit() {
+        if (bg.suljetaanko) {
+            sivuPrinter.close();
+        }
+        filuPrinter.close();
     }
 }
