@@ -1,38 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 import bibtexgeneraattori.BibtexGenerator;
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
-import java.util.Map;
+//import java.util.Collection;
+//import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Antti
- */
 public class Inproceedings extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Map<String, String[]> params = request.getParameterMap();
+        //Map<String, String[]> params = request.getParameterMap();
         
         String author = request.getParameter("author");
         String title = request.getParameter("title");
@@ -43,25 +24,66 @@ public class Inproceedings extends HttpServlet {
         PrintWriter out = response.getWriter();
         BibtexGenerator bibi = new BibtexGenerator("inproceedings", parametrit, out);
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-//            out.println("<title>Servlet Inproceedings</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println();
+            out.println("<!DOCTYPE html>\n" +
+"<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +
+"<html>\n" +
+"    <head>\n" +
+"        <title>BibTeX Generator</title>\n" +
+"        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
+"\n" +
+"        <script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js\"></script>\n" +
+"        <script type=\"text/javascript\">\n" +
+"            \n" +
+"            \n" +
+"            function muutos(){\n" +
+"                var value = $('#theSelect option:selected').attr('value');\n" +
+"                var completeUrl = value+'.html';\n" +
+"                $(\"#myform\").attr(\"action\", completeUrl);\n" +
+"            }\n" +
+"\n" +
+"        </script>\n" +
+"\n" +
+"    </head>\n" +
+"    <body>\n" +
+"        <h1>\n" +
+"            BibTeX Generator\n" +
+"        </h1>\n" +
+"\n" +
+"        <!-- Pudotusvalikko lomakkeen valitsemiseksi !-->\n" +
+"        <div>\n" +
+"            <br>\n" +
+"            <p>Choose a form type:</p>\n" +
+"            <Form id=\"myform\" action=\"article.html\" Method =\"post\" accept-charset=\"utf-8\">\n" +
+"\n" +
+"                <select id=\"theSelect\" onchange=\"muutos()\">\n" +
+"                    <option value=\"article\">Article</option>\n" +
+"                    <option value=\"book\">Book</option>\n" +
+"                    <option value=\"booklet\">Booklet</option>\n" +
+"                    <option value=\"conference\">Conference</option>\n" +
+"                    <option value=\"inbook\">Inbook</option>\n" +
+"                    <option value=\"incollection\">Incollection</option>\n" +
+"                    <option value=\"inproceedings\">Inproceedings</option>\n" +
+"                    <option value=\"manual\">Manual</option>\n" +
+"                    <option value=\"mastersthesis\">Master's Thesis</option>\n" +
+"                    <option value=\"misc\">Misc</option>\n" +
+"                    <option value=\"phdthesis\">Ph.D. Thesis</option>\n" +
+"                    <option value=\"proceedings\">Proceedings</option>\n" +
+"                    <option value=\"techreport\">Techreport</option>\n" +
+"                    <option value=\"unpublished\">Unpublished</option>\n" +
+"                </select>\n" +
+"\n" +
+"                <Input type = 'Submit' Name = 'submit' Value = 'Choose'>\n" +
+"\n" +
+"            </form>"
+                    + "<br><br>\n" +
+"        </div>\n" +
+
+"    </body>\n" +
+"</html>");
+            
+            //bibtexin generointi
             bibi.generoiBibtext();
-//            for (Map.Entry<String, String[]> param : params.entrySet()) {
-//                out.println("key: "+param.getKey());
-//                out.println("<br>");
-//                out.println("value(s): ");
-//                for (String value : param.getValue()) {
-//                    out.print(value+", ");
-//                }
-//                out.println("<br>----<br>");
-//            }
-            out.println("</body>");
-            out.println("</html>");
+            
         } finally {            
             out.close();
         }
