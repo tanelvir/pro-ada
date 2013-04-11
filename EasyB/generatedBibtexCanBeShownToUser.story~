@@ -1,0 +1,15 @@
+description 'User can see bibtex'
+
+// joku (tarkempi) tapaus mitä pystyy tekemään
+scenario "User can see bibtex", {
+    given 'User has filled the form rightly', {
+    }
+    when 'All of the requireds are filled', {
+    }
+// odotettu lopputulos
+    then 'user will be logged in to system', {
+    }
+}
+
+
+User has send filled form to the servlet
