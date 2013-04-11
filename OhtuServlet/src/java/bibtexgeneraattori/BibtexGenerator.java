@@ -232,7 +232,7 @@ public class BibtexGenerator {
 //        File dir = new File("/cs/fs/home/joeniemi/GithubProjects/pro-ada/BibtextGeneraattori");
 //        File dir = new File("/Bibtexs");
 //        dir.mkdirs(); // tekee polun (siis kansiot yms) jos niitä ei ole
-        this.file = new File("viitetiedosto.txt");
+        this.file = new File("viitetiedosto.bib");
 
     }
 
