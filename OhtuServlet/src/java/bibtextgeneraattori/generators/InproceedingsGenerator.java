@@ -18,7 +18,7 @@ public class InproceedingsGenerator extends BibtexPrinter implements TextGenerat
         printtaaTyyppi(bg.Tyyppi);
         printtaa("author", bg.Author);
         printtaa("title", bg.Title);
-        printtaa("booktitle", bg.Year);
+        printtaa("booktitle", bg.Booktitle);
         printtaa("year", bg.Year);
         printtaaEiPakollinen("editor", bg.Editor);
         printtaaEiPakollinen("volume", bg.Volume);

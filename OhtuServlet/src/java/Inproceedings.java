@@ -17,7 +17,7 @@ public class Inproceedings extends HttpServlet {
         
         String author = request.getParameter("author");
         String title = request.getParameter("title");
-        String booktitle = request.getParameter("book title");
+        String booktitle = request.getParameter("booktitle");
         String year = request.getParameter("year");
         String[] parametrit = new String[] {"author@"+author, "title@"+title, "booktitle@"+booktitle, "year@"+year};
         
