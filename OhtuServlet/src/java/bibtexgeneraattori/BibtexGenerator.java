@@ -51,24 +51,27 @@ public class BibtexGenerator {
     public String Type = "";
     public String School = "";
     public String Institution = "";
-    PrintWriter PR;
-    File file;
-
+    PrintWriter sivuPrinter;
+    PrintWriter filuPrinter;
+    public File file;
     public boolean suljetaanko = false;
     // Annetaan taulukko, jossa:
     // taulu[0] = tunnus@GvG00
     // taulu[1] = author@kirjailija
-    public BibtexGenerator(String tyyppi, String[] parametrit, PrintWriter pr) {
+
+    public BibtexGenerator(String tyyppi, String[] parametrit, PrintWriter sivuPrinter) {
         this.Tyyppi = tyyppi;
-        this.PR = pr;
-        
+        this.sivuPrinter = sivuPrinter;
+
         luoTextFile();
-        if (PR == null) {
+        luoFiluPrinter();
+        if (sivuPrinter != null) {
             suljetaanko = true;
         }
         // Luodaan oma printwritteri jos ei saatu sitä parametrinä
-        if (this.PR == null) {
-            luoPrintWriter();
+        if (this.sivuPrinter == null) {
+            System.out.println("sivu printteriä ei annettu");
+//            luoSivuPrinter();
         }
         for (int i = 0; i < parametrit.length; i++) {
             // Jos taulussa on ylimääräisiä tyhjiä rivejä, lopetetaan
@@ -79,6 +82,7 @@ public class BibtexGenerator {
             String lisattavanArvo = checkArvo(parametrit[i]);
             lisaaParametri(lisattavanTyyppi, lisattavanArvo);
         }
+        BibtexPrinter BP = new BibtexPrinter(sivuPrinter, filuPrinter, this);
     }
 
     private void lisaaParametri(String tyyppi, String arvo) {
@@ -161,54 +165,64 @@ public class BibtexGenerator {
 
     public void generoiBibtext() {
         if (Tyyppi.equals("article")) {
-            ArticleGenerator BG = new ArticleGenerator(PR, this);
+            ArticleGenerator BG = new ArticleGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("book")) {
-            BookGenerator BG = new BookGenerator(PR, this);
+            BookGenerator BG = new BookGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("booklet")) {
-            BookletGenerator BG = new BookletGenerator(PR, this);
+            BookletGenerator BG = new BookletGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("conference")) {
-            ConferenceGenerator BG = new ConferenceGenerator(PR, this);
+            ConferenceGenerator BG = new ConferenceGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("inbook")) {
-            InbookGenerator BG = new InbookGenerator(PR, this);
+            InbookGenerator BG = new InbookGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("incollection")) {
-            IncollectionGenerator BG = new IncollectionGenerator(PR, this);
+            IncollectionGenerator BG = new IncollectionGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("inproceedings")) {
-            InproceedingsGenerator BG = new InproceedingsGenerator(PR, this);
+            InproceedingsGenerator BG = new InproceedingsGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("manual")) {
-            ManualGenerator BG = new ManualGenerator(PR, this);
+            ManualGenerator BG = new ManualGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("mastersthesis")) {
-            MastersthesisGenerator BG = new MastersthesisGenerator(PR, this);
+            MastersthesisGenerator BG = new MastersthesisGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("misc")) {
-            MiscGenerator BG = new MiscGenerator(PR, this);
+            MiscGenerator BG = new MiscGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("phdthesis")) {
-            PhdthesisGenerator BG = new PhdthesisGenerator(PR, this);
+            PhdthesisGenerator BG = new PhdthesisGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("proceedings")) {
-            ProceedingsGenerator BG = new ProceedingsGenerator(PR, this);
+            ProceedingsGenerator BG = new ProceedingsGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("techreport")) {
-            TechreportGenerator BG = new TechreportGenerator(PR, this);
+            TechreportGenerator BG = new TechreportGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("unpublished")) {
-            UnpublishedGenerator BG = new UnpublishedGenerator(PR, this);
+            UnpublishedGenerator BG = new UnpublishedGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         }
     }
 
-    private void luoPrintWriter() {
+    private void luoSivuPrinter() {
 
         try {
-            this.PR = new PrintWriter(new FileWriter(file));
+            this.sivuPrinter = new PrintWriter(new FileWriter(file));
+        } catch (IOException e) {
+            System.out.println("tekstitiedoston polkua ei löytynyt tms");
+        }
+    }
+
+    private void luoFiluPrinter() {
+
+        try {
+//            this.filuPrinter = new PrintWriter(new FileWriter(file));
+            this.filuPrinter = new PrintWriter(file);
         } catch (IOException e) {
             System.out.println("tekstitiedoston polkua ei löytynyt tms");
         }
@@ -216,9 +230,10 @@ public class BibtexGenerator {
 
     private void luoTextFile() {
 //        File dir = new File("/cs/fs/home/joeniemi/GithubProjects/pro-ada/BibtextGeneraattori");
-//        File dir = new File("/BibtextGenerator");
+//        File dir = new File("/Bibtexs");
 //        dir.mkdirs(); // tekee polun (siis kansiot yms) jos niitä ei ole
         this.file = new File("viitetiedosto.txt");
+
     }
 
     public void alustaTestejaVarten() {
@@ -229,54 +244,3 @@ public class BibtexGenerator {
         this.Publisher = "Prentice Hall";
     }
 }
-//
-//
-//        if (tyyppi.equals("article")) {
-//            ArticleGenerator BG = new ArticleGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("book")) {
-//            BookGenerator BG = new BookGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("booklet")) {
-//            BookletGenerator BG = new BookletGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("conference")) {
-//            ConferenceGenerator BG = new ConferenceGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("inbook")) {
-//            InbookGenerator BG = new InbookGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("incollection")) {
-//            IncollectionGenerator BG = new IncollectionGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("inproceedings")) {
-//            InproceedingsGenerator BG = new InproceedingsGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("manual")) {
-//            ManualGenerator BG = new ManualGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("mastersthesis")) {
-//            MastersthesisGenerator BG = new MastersthesisGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("misc")) {
-//            MiscGenerator BG = new MiscGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("phdthesis")) {
-//            PhdthesisGenerator BG = new PhdthesisGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("proceedings")) {
-//            ProceedingsGenerator BG = new ProceedingsGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("techreport")) {
-//            TechreportGenerator BG = new TechreportGenerator(out, this);
-//            BG.generoi();
-//        } else if (tyyppi.equals("unpublished")) {
-//            UnpublishedGenerator BG = new UnpublishedGenerator(out, this);
-//            BG.generoi();
-//        }
-//
-//String tyyppi, String tunnus, String author, String title,
-//            String publisher, String address, String journal, String pages, String booktitle,
-//            String note, String year, String volume, String number, String month, String key,
-//            String series, String edition, String editor, String organization, String howpublished,
-//            String chapter, String type, String school, String institution

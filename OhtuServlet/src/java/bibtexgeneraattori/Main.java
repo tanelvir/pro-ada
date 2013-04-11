@@ -3,7 +3,8 @@ package bibtexgeneraattori;
 public class Main {
 
     public static void main(String[] args) {
-        String tyyppi = "article";
+//        String tyyppi = "article";
+        String tyyppi = "inproceedings";
         String[] taulu = new String[10];
         taulu[0] = "tunnus@W04";
         taulu[1] = "author@Whittington, Keith J.";
