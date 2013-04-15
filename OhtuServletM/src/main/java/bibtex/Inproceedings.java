@@ -1,3 +1,5 @@
+package bibtex;
+
 import bibtex.gen.BibtexGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
