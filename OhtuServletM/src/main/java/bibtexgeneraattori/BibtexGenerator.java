@@ -59,8 +59,8 @@ public class BibtexGenerator {
     // taulu[0] = tunnus@GvG00
     // taulu[1] = author@kirjailija
 
-    public BibtexGenerator(String tyyppi, String[] parametrit, PrintWriter sivuPrinter) {
-        this.Tyyppi = tyyppi;
+    public BibtexGenerator(String[] parametrit, PrintWriter sivuPrinter) {
+        this.Tyyppi = parametrit[0];
         this.sivuPrinter = sivuPrinter;
 
         luoTextFile();
@@ -73,7 +73,7 @@ public class BibtexGenerator {
             System.out.println("sivu printteriä ei annettu");
 //            luoSivuPrinter();
         }
-        for (int i = 0; i < parametrit.length; i++) {
+        for (int i = 1; i < parametrit.length; i++) {
             // Jos taulussa on ylimääräisiä tyhjiä rivejä, lopetetaan
             if (parametrit[i] == null) {
                 break;

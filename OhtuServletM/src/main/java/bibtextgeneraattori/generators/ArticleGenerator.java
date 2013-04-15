@@ -13,8 +13,8 @@ public class ArticleGenerator extends BibtexPrinter implements TextGenerator {
 
     @Override
     public void generoi() {
-        sivuPrinter.println("article@{" + bg.Tunnus + ",");
-        filuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
+        printtaaAlkutag();
+        printtaaTyyppi(bg.Tyyppi);
         printtaa("author", bg.Author);
         printtaa("title", bg.Title);
         printtaa("journal", bg.Journal);
@@ -22,12 +22,12 @@ public class ArticleGenerator extends BibtexPrinter implements TextGenerator {
         printtaaEiPakollinen("volume", bg.Volume);
         printtaaEiPakollinen("number", bg.Number);
         printtaaEiPakollinen("pages", bg.Series);
-        printtaaEiPakollinen("address", bg.Address);
+        printtaaEiPakollinen("month", bg.Month);
         printtaaEiPakollinen("note", bg.Edition);
         printtaaEiPakollinen("key", bg.Month);
-        sivuPrinter.println("}");
-        if (bg.suljetaanko) {
-            sivuPrinter.close();
-        }
+        printtaaAaltosulku();
+        printtaaLopputag();
+        printtaaPolku();
+        suljePrintterit();
     }
 }
