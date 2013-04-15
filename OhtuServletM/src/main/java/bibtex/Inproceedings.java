@@ -1,9 +1,10 @@
-package bibtex;
-
-import .*;
 import bibtex.gen.BibtexGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 //import java.util.Collection;
 //import java.util.Map;
 import javax.servlet.ServletException;
@@ -13,19 +14,36 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Inproceedings extends HttpServlet {
 
+    
+    private String[] muunnaParametrit(String tyyppi, Map<String,String[]> parameterMap) {
+        
+	Set<Map.Entry<String,String[]>> parameterSet = parameterMap.entrySet();
+        ArrayList<String> parametrit = new ArrayList<String>();
+        parametrit.add(tyyppi);
+        //String[] parametrit = new String[parameterSet.size()];
+        for (Entry<String, String[]> parameter : parameterSet) {
+            if (parameter.getValue()[0].equals("")) continue;
+            parametrit.add(parameter.getKey()+"@"+parameter.getValue()[0]);
+            System.out.println(parameter.getKey()+"@"+parameter.getValue()[0]);
+        }
+        String[] tulos = new String[parametrit.size()];
+        return parametrit.toArray(tulos);
+    }
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //Map<String, String[]> params = request.getParameterMap();
         
-        String author = request.getParameter("author");
-        String title = request.getParameter("title");
-        String booktitle = request.getParameter("booktitle");
-        String year = request.getParameter("year");
-        String[] parametrit = new String[] {"author@"+author, "title@"+title, "booktitle@"+booktitle, "year@"+year};
-        
+//        String author = request.getParameter("author");
+//        String title = request.getParameter("title");
+//        String booktitle = request.getParameter("booktitle");
+//        String year = request.getParameter("year");
+//        String[] parametrit = new String[] {"author@"+author, "title@"+title, "booktitle@"+booktitle, "year@"+year};
+        String[] parametrit = muunnaParametrit("inproceedings", request.getParameterMap());
         PrintWriter out = response.getWriter();
-        BibtexGenerator bibi = new BibtexGenerator("inproceedings", parametrit, out);
+        BibtexGenerator bibi = new BibtexGenerator(parametrit, out);
         try {
             out.println("<!DOCTYPE html>\n" +
 "<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +

@@ -14,9 +14,9 @@ public class Main {
         taulu[5] = "volume@19";
         taulu[6] = "number@5";
         taulu[7] = "address@USA";
-        BibtexGenerator b = new BibtexGenerator(tyyppi, taulu, null);
+        //BibtexGenerator b = new BibtexGenerator(tyyppi, taulu, null);
 //        b.alustaTestejaVarten();
-        b.generoiBibtext();
+        //b.generoiBibtext();
     }
 }
 //@article{W04,
