@@ -28,7 +28,7 @@ public class BibtexGenerator {
 
     Scanner lukija = new Scanner(System.in);
     public String Tyyppi = ""; // kirja, artikkeli, inproceeding
-    public String Tunnus = ""; // GvG00, A001 jne
+    public String ID = ""; // GvG00, A001 jne
     public String Author = "";
     public String Title = "";
     public String Publisher = "";
@@ -55,10 +55,9 @@ public class BibtexGenerator {
     PrintWriter filuPrinter;
     public File file;
     public boolean suljetaanko = false;
-    // Annetaan taulukko, jossa:
-    // taulu[0] = tunnus@GvG00
-    // taulu[1] = author@kirjailija
-
+    
+    //HUOM:
+    // ENSIKERRALLA: saan antilta ArrayList<String []>:ssä taulukkoja, missä on inproceedings, book jne
     public BibtexGenerator(String[] parametrit, PrintWriter sivuPrinter) {
         this.Tyyppi = parametrit[0];
         this.sivuPrinter = sivuPrinter;
@@ -86,8 +85,9 @@ public class BibtexGenerator {
     }
 
     private void lisaaParametri(String tyyppi, String arvo) {
-        if (tyyppi.equals("tunnus")) {
-            this.Tunnus = arvo;
+        tyyppi = tyyppi.toLowerCase();
+        if (tyyppi.equals("id")) {
+            this.ID = arvo;
         } else if (tyyppi.equals("author")) {
             this.Author = arvo;
         } else if (tyyppi.equals("title")) {
