@@ -1,4 +1,4 @@
-package bibtex;
+﻿package bibtex;
 
 import bibtex.gen.BibtexGenerator;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Inproceedings extends HttpServlet {
+public class Inproceedings extends HttpServlet {//a
 
     
     private String[] muunnaParametrit(String tyyppi, Map<String,String[]> parameterMap) {
