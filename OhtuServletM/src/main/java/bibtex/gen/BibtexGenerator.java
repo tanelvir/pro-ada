@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -55,11 +56,9 @@ public class BibtexGenerator {
     PrintWriter filuPrinter;
     public File file;
     public boolean suljetaanko = false;
-    
-    //HUOM:
-    // ENSIKERRALLA: saan antilta ArrayList<String []>:ssä taulukkoja, missä on inproceedings, book jne
-    public BibtexGenerator(String[] parametrit, PrintWriter sivuPrinter) {
-        this.Tyyppi = parametrit[0];
+
+    public BibtexGenerator(ArrayList<String[]> parametriTaulut, PrintWriter sivuPrinter) {
+
         this.sivuPrinter = sivuPrinter;
 
         luoTextFile();
@@ -72,6 +71,25 @@ public class BibtexGenerator {
             System.out.println("sivu printteriä ei annettu");
 //            luoSivuPrinter();
         }
+        BibtexPrinter BP = new BibtexPrinter(sivuPrinter, filuPrinter, this);
+        muodostaBibtexit(parametriTaulut);
+    }
+
+    private void muodostaBibtexit(ArrayList<String[]> parametriTaulut) {
+
+        for (int i = 0; i < parametriTaulut.size(); i++) {
+            // Viimeisen bibtex printin jälkeen printterit suljetaan
+            if (i == parametriTaulut.size() - 1) {
+                suljetaanko = true;
+            }
+            alustaYhdenBibtexinParametrit(parametriTaulut.get(i));
+            generoiBibtex();
+        }
+    }
+
+    private void alustaYhdenBibtexinParametrit(String[] parametrit) {
+        // tyyppi = id, author, title, article jne
+        this.Tyyppi = parametrit[0];
         for (int i = 1; i < parametrit.length; i++) {
             // Jos taulussa on ylimääräisiä tyhjiä rivejä, lopetetaan
             if (parametrit[i] == null) {
@@ -81,7 +99,6 @@ public class BibtexGenerator {
             String lisattavanArvo = checkArvo(parametrit[i]);
             lisaaParametri(lisattavanTyyppi, lisattavanArvo);
         }
-        BibtexPrinter BP = new BibtexPrinter(sivuPrinter, filuPrinter, this);
     }
 
     private void lisaaParametri(String tyyppi, String arvo) {
@@ -163,7 +180,7 @@ public class BibtexGenerator {
         return arvo;
     }
 
-    public void generoiBibtext() {
+    public void generoiBibtex() {
         if (Tyyppi.equals("article")) {
             ArticleGenerator BG = new ArticleGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
@@ -233,7 +250,7 @@ public class BibtexGenerator {
 //        File dir = new File("/Bibtexs");
 //        dir.mkdirs(); // tekee polun (siis kansiot yms) jos niitä ei ole
         this.file = new File("viitetiedosto.bib");
-
+        System.out.println(file.getAbsolutePath());
     }
 
     public void alustaTestejaVarten() {

@@ -45,7 +45,9 @@ public class Inproceedings extends HttpServlet {
 //        String[] parametrit = new String[] {"author@"+author, "title@"+title, "booktitle@"+booktitle, "year@"+year};
         String[] parametrit = muunnaParametrit("inproceedings", request.getParameterMap());
         PrintWriter out = response.getWriter();
-        BibtexGenerator bibi = new BibtexGenerator(parametrit, out);
+        ArrayList<String[]> parametriTaulut = new ArrayList();
+        parametriTaulut.add(parametrit);
+        BibtexGenerator bibi = new BibtexGenerator(parametriTaulut, out);
         try {
             out.println("<!DOCTYPE html>\n" +
 "<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +
@@ -104,8 +106,8 @@ public class Inproceedings extends HttpServlet {
 "    </body>\n" +
 "</html>");
             
-            //bibtexin generointi
-            bibi.generoiBibtext();
+            //bibtexin generointi, tätä ei enää tarvita!
+//            bibi.generoiBibtext();
             
         } finally {            
             out.close();
