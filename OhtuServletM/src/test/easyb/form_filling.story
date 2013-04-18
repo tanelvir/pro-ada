@@ -28,7 +28,7 @@ scenario "user can fill an inproceedings form", {
         element.submit();
     }
     then 'user becomes happy', {
-
+        
     }
 }
 
