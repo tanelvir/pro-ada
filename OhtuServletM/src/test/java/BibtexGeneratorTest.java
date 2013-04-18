@@ -3,6 +3,7 @@ import bibtex.gen.BibtexGenerator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 import static junit.framework.Assert.assertEquals;
@@ -37,6 +38,7 @@ public class BibtexGeneratorTest extends TestCase {
             articleParametrit[indeksi] = lukija.nextLine();
             indeksi++;
         }
+        lukija.close();
     }
 
     private void alustaMonenBibtexinTiedosto() throws FileNotFoundException {
@@ -53,6 +55,7 @@ public class BibtexGeneratorTest extends TestCase {
             taulu[indeksi] = lukija.nextLine();
             indeksi++;
         }
+        lukija.close();
     }
 
     @Override
@@ -67,19 +70,21 @@ public class BibtexGeneratorTest extends TestCase {
 
     @Test
     public void testBibtexGeneratorConstructor() throws FileNotFoundException {
-        File filu = new File("articleBibtex");
+        String url = getClass().getClassLoader().getResource("articleBibtex.txt").getFile();
+        File filu = new File(url);
         PrintWriter sivuPrinter;
         try {
             sivuPrinter = new PrintWriter(filu);
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("ei löytynyt articleBibtex filua");
         }
-        ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
-        BibtexGenerator BG = new BibtexGenerator(parametriTaulut, sivuPrinter);
+        ArrayList<String[]> pt = new ArrayList<String[]>();
+        BibtexGenerator BG = new BibtexGenerator(pt, sivuPrinter);
         assertNotNull("bibtexGenerator olio oli null", BG);
     }
 
     public void testArticleGenerator() throws FileNotFoundException {
+        
         File filu = new File("articleBibtex");
         PrintWriter sivuPrinter;
         try {

@@ -80,7 +80,7 @@ public class BibtexGenerator {
         for (int i = 0; i < parametriTaulut.size(); i++) {
             // Viimeisen bibtex printin jälkeen printterit suljetaan
             if (i == parametriTaulut.size() - 1) {
-                suljetaanko = true;
+                suljetaanko = false;
             }
             alustaYhdenBibtexinParametrit(parametriTaulut.get(i));
             generoiBibtex();
@@ -223,15 +223,6 @@ public class BibtexGenerator {
         } else if (Tyyppi.equals("unpublished")) {
             UnpublishedGenerator BG = new UnpublishedGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
-        }
-    }
-
-    private void luoSivuPrinter() {
-
-        try {
-            this.sivuPrinter = new PrintWriter(new FileWriter(file));
-        } catch (IOException e) {
-            System.out.println("tekstitiedoston polkua ei löytynyt tms");
         }
     }
 
