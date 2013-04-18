@@ -32,6 +32,7 @@ public class TyyppiArrayList extends ArrayList<String[]> {
     
     @Override
     public boolean add(String[] element) {
+        if (this.etsiID(element) == null) return false;
         for (String[] parametrit : this) {
             if (this.etsiID(parametrit).equals(this.etsiID(element))) {
                 return false;

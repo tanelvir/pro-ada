@@ -48,12 +48,12 @@ public class Inproceedings extends HttpServlet {
         String[] parametrit = muunnaParametrit("inproceedings", request.getParameterMap());
         PrintWriter out = response.getWriter();
         if (!tAL.add(parametrit)) {
-            out.println("ID JO KÄYTÖSSÄ!");
+            out.println("ID PUUTTUU TAI ID JO KÄYTÖSSÄ!");
             return;
         }
+        //out.println(request.getRequestURI());
         ArrayList<String[]> parametriTaulut = new ArrayList();
         parametriTaulut.add(parametrit);
-        BibtexGenerator bibi = new BibtexGenerator(tAL, out);
         try {
             out.println("<!DOCTYPE html>\n" +
 "<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +
@@ -111,6 +111,7 @@ public class Inproceedings extends HttpServlet {
 
 "    </body>\n" +
 "</html>");
+          BibtexGenerator bibi = new BibtexGenerator(tAL, out);
             
             //bibtexin generointi, tätä ei enää tarvita!
 //            bibi.generoiBibtext();
