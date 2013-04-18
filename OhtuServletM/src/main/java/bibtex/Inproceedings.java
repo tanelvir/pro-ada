@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Inproceedings extends HttpServlet {
     
+    TyyppiArrayList tAL = new TyyppiArrayList();
     
     private String[] muunnaParametrit(String tyyppi, Map<String,String[]> parameterMap) {//k
         
@@ -46,9 +47,13 @@ public class Inproceedings extends HttpServlet {
 //        String[] parametrit = new String[] {"author@"+author, "title@"+title, "booktitle@"+booktitle, "year@"+year};
         String[] parametrit = muunnaParametrit("inproceedings", request.getParameterMap());
         PrintWriter out = response.getWriter();
+        if (!tAL.add(parametrit)) {
+            out.println("ID JO KÄYTÖSSÄ!");
+            return;
+        }
         ArrayList<String[]> parametriTaulut = new ArrayList();
         parametriTaulut.add(parametrit);
-        BibtexGenerator bibi = new BibtexGenerator(parametriTaulut, out);
+        BibtexGenerator bibi = new BibtexGenerator(tAL, out);
         try {
             out.println("<!DOCTYPE html>\n" +
 "<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +
