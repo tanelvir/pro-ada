@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Inproceedings extends HttpServlet {
     
+    
     private String[] muunnaParametrit(String tyyppi, Map<String,String[]> parameterMap) {//k
         
         
