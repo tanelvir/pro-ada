@@ -181,6 +181,9 @@ public class BibtexGenerator {
     }
 
     public void generoiBibtex() {
+        if (Tyyppi == null) {
+            return;
+        }
         if (Tyyppi.equals("article")) {
             ArticleGenerator BG = new ArticleGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
