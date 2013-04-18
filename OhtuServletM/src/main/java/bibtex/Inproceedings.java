@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-//import java.util.Collection;
-//import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +22,6 @@ public class Inproceedings extends HttpServlet {
 	Set<Map.Entry<String,String[]>> parameterSet = parameterMap.entrySet();
         ArrayList<String> parametrit = new ArrayList<String>();
         parametrit.add(tyyppi);
-        //String[] parametrit = new String[parameterSet.size()];
         for (Entry<String, String[]> parameter : parameterSet) {
             if (parameter.getValue()[0].equals("")) continue;
             parametrit.add(parameter.getKey()+"@"+parameter.getValue()[0]);
@@ -38,13 +35,7 @@ public class Inproceedings extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //Map<String, String[]> params = request.getParameterMap();
-        
-//        String author = request.getParameter("author");
-//        String title = request.getParameter("title");
-//        String booktitle = request.getParameter("booktitle");
-//        String year = request.getParameter("year");
-//        String[] parametrit = new String[] {"author@"+author, "title@"+title, "booktitle@"+booktitle, "year@"+year};
+        //request.getreq
         String[] parametrit = muunnaParametrit("inproceedings", request.getParameterMap());
         PrintWriter out = response.getWriter();
         if (!tAL.add(parametrit)) {
