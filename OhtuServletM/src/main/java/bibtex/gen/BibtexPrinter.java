@@ -62,7 +62,7 @@ public class BibtexPrinter {
     
     public void printtaaPolku() {
         if (sivuPrinter != null) {
-            //sivuPrinter.println("POLKU : " + bg.file.getAbsolutePath());
+            sivuPrinter.println("POLKU : " + bg.file.getAbsolutePath());
             sivuPrinter.println("<a href=\"" + bg.file.getAbsolutePath() + "\">Bibtex-tiedoston latauslinkki</a>");
             //<a href="default.asp">HTML Tutorial</a>
         }
