@@ -20,9 +20,9 @@ public class BibtexGeneratorTest extends TestCase {
     private Scanner testiLukija;
     // Monen bibtexin parametritaulut
     private ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
-    private String[] articleParametrit;
-    private String[] bookParametrit;
-    private String inproceedingsParametrit;
+    private String[] articleParametrit = new String[25];
+    private String[] bookParametrit = new String[25];
+    private String[] inproceedingsParametrit = new String[25];
 
     public BibtexGeneratorTest(String testName) throws FileNotFoundException {
         super(testName);
@@ -31,8 +31,8 @@ public class BibtexGeneratorTest extends TestCase {
     }
 
     private void alustaArticlenParametrit() throws FileNotFoundException {
-
-        Scanner lukija = new Scanner(new File("articleBibtex"));
+        File filu = new File("articleBibtex");
+        Scanner lukija = new Scanner(filu);
         int indeksi = 0;
         while (lukija.hasNextLine()) {
             articleParametrit[indeksi] = lukija.nextLine();
@@ -70,8 +70,8 @@ public class BibtexGeneratorTest extends TestCase {
 
     @Test
     public void testBibtexGeneratorConstructor() throws FileNotFoundException {
-        String url = getClass().getClassLoader().getResource("articleBibtex.txt").getFile();
-        File filu = new File(url);
+//        String url = getClass().getClassLoader().getResource("articleBibtex").getFile();
+        File filu = new File("articleBibtex");
         PrintWriter sivuPrinter;
         try {
             sivuPrinter = new PrintWriter(filu);
@@ -84,17 +84,17 @@ public class BibtexGeneratorTest extends TestCase {
     }
 
     public void testArticleGenerator() throws FileNotFoundException {
-        
-        File filu = new File("articleBibtex");
-        PrintWriter sivuPrinter;
-        try {
-            sivuPrinter = new PrintWriter(filu);
-        } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("ei löytynyt articleBibtex filua");
-        }
+
+//        File filu = new File("articleBibtex");
+//        PrintWriter sivuPrinter;
+//        try {
+//            sivuPrinter = new PrintWriter(filu);
+//        } catch (FileNotFoundException e) {
+//            throw new FileNotFoundException("ei löytynyt articleBibtex filua");
+//        }
         ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
         parametriTaulut.add(articleParametrit);
-        BibtexGenerator BG = new BibtexGenerator(parametriTaulut, sivuPrinter);
+        BibtexGenerator BG = new BibtexGenerator(parametriTaulut, null);
 
     }
 }
