@@ -83,18 +83,18 @@ public class BibtexGeneratorTest extends TestCase {
         assertNotNull("bibtexGenerator olio oli null", BG);
     }
 
-    public void testArticleGenerator() throws FileNotFoundException {
-
-//        File filu = new File("articleBibtex");
-//        PrintWriter sivuPrinter;
-//        try {
-//            sivuPrinter = new PrintWriter(filu);
-//        } catch (FileNotFoundException e) {
-//            throw new FileNotFoundException("ei löytynyt articleBibtex filua");
-//        }
-        ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
-        parametriTaulut.add(articleParametrit);
-        BibtexGenerator BG = new BibtexGenerator(parametriTaulut, null);
-
-    }
+//    public void testArticleGenerator() throws FileNotFoundException {
+//
+////        File filu = new File("articleBibtex");
+////        PrintWriter sivuPrinter;
+////        try {
+////            sivuPrinter = new PrintWriter(filu);
+////        } catch (FileNotFoundException e) {
+////            throw new FileNotFoundException("ei löytynyt articleBibtex filua");
+////        }
+//        ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
+//        parametriTaulut.add(articleParametrit);
+//        BibtexGenerator BG = new BibtexGenerator(parametriTaulut, null);
+//
+//    }
 }
