@@ -3,6 +3,7 @@ package bibtex;
 import bibtex.gen.BibtexGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -48,6 +49,15 @@ public class Generator extends HttpServlet {
             out.println("ID PUUTTUU TAI ID JO KÄYTÖSSÄ!");
             return;
         }
+        StringWriter joenTeksti = new StringWriter();
+        PrintWriter joenTeksti2 = new PrintWriter(joenTeksti);
+        try {
+            BibtexGenerator bibi = new BibtexGenerator(tAL, joenTeksti2);
+
+            } catch (Exception ex) {
+                out.println("pakollinen kenttä puuttuu!");
+                return;
+            }
         try {
             out.println("<!DOCTYPE html>\n" +
 "<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +
@@ -105,17 +115,21 @@ public class Generator extends HttpServlet {
 
 "    </body>\n" +
 "</html>");
-            try {
-                BibtexGenerator bibi = new BibtexGenerator(tAL, out);
-                  
-                  //            bibi.generoiBibtext();
-      //            bibi.generoiBibtext();
-            } catch (Exception ex) {
-                out.flush();
-                out.println("pakollinen kenttä puuttuu!");
-                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+        //File filu = new File("viitetiedosto");
+        out.println(joenTeksti.toString());
+//=======
+//            try {
+//                BibtexGenerator bibi = new BibtexGenerator(tAL, out);
+//                  
+//                  //            bibi.generoiBibtext();
+//      //            bibi.generoiBibtext();
+//            } catch (Exception ex) {
+//                out.flush();
+//                out.println("pakollinen kenttä puuttuu!");
+//                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            
+//>>>>>>> 0202fe5d8a002eced576edfe5570f04f10d93017:OhtuServletM/src/main/java/bibtex/Generator.java
         } finally {            
             out.close();
         }
