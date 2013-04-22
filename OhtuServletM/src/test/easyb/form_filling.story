@@ -3,18 +3,19 @@ import bibtexgeneraattori.generators.*;
 import bibtexgeneraattori.app.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-
+import org.openqa.selenium.support.ui.Select;
 
 description 'user can fill form'
 
 scenario "user can fill an inproceedings form", {
     given 'inproceedings form is selected', {
         driver = new HtmlUnitDriver();
-        driver.get("http://localhost:8084");
-        element = driver.findElement(By.id("myform"));
-        element.deselectAll();
-        element.selectByVisibleText("Inproceedings");
-        element.submit();
+        driver.get("http://localhost:8080");
+        element = driver.findElement(By.id("theSelect"));
+        Select clickThis = new Select(element);
+        clickThis.selectByValue("inproceedings");
+        element = driver.findElement(By.name("submit"));       
+        element.click();
     }
 
     when 'the required fields have been filled', {
