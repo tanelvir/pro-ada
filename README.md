@@ -10,6 +10,8 @@ https://docs.google.com/spreadsheet/ccc?key=0AuZQeW-xIGJJdG12MjN0bWl4OVlrVXFaWlZ
 sprint 2:
 https://docs.google.com/spreadsheet/ccc?key=0AlzTvmGWYEGQdGx5dkEzdEJLdGFhRUVMazMxT3h5TFE&usp=sharing
 
+https://docs.google.com/spreadsheet/ccc?key=0AlzTvmGWYEGQdGx5dkEzdEJLdGFhRUVMazMxT3h5TFE&usp=sharing
+
 CI-raportit
 
 Jenkins:

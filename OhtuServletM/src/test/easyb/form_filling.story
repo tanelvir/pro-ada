@@ -27,8 +27,8 @@ scenario "user can fill an inproceedings form", {
         element = driver.findElement(By.name("Send"));
         element.submit();
     }
-    then 'user becomes happy', {
-        
+    then 'the form has been sent', {
+        driver.getPageSource().contains("Welcome to Ohtu Application!").shouldBe true
     }
 }
 

@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         String[] taulu = new String[10];
         taulu[0] = "inproceedings";
-        taulu[1] = "tunnus@W04";
+        taulu[1] = "ID@W04";
         taulu[2] = "author@Whittington, Keith J.";
         taulu[3] = "title@Infusing active learning into introductory programming courses";
         taulu[4] = "journal@J. Comput. Small Coll.";
@@ -18,7 +18,7 @@ public class Main {
 
         String taulu2[] = new String[10];
         taulu2[0] = "article";
-        taulu2[1] = "tunnus@CBH91";
+        taulu2[1] = "ID@CBH91";
         taulu2[2] = "author@Allan Collins and John Seely Brown and Ann Holum";
         taulu2[3] = "title@Cognitive apprenticeship: making thinking visible";
         taulu2[4] = "journal@J. safdassadl.";
@@ -29,7 +29,7 @@ public class Main {
         
         String taulu3[] = new String[10];
         taulu3[0] = "book";
-        taulu3[1] = "hahaha";
+        taulu3[1] = "ID@ASDF";
         taulu3[2] = "hehehehe";
         taulu3[3] = "lol";
         taulu3[4] = ":DDDDDDDDDDDDDDDDDDDDDD";
