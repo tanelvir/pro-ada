@@ -7,11 +7,12 @@ public class BibtexPrinter {
     public PrintWriter sivuPrinter;
     public PrintWriter filuPrinter;
     public BibtexGenerator bg;
-
+    
     public BibtexPrinter(PrintWriter filuPrinter, PrintWriter sivuPrinter, BibtexGenerator bg) {
         this.sivuPrinter = sivuPrinter;
         this.filuPrinter = filuPrinter;
         this.bg = bg;
+       
 
     }
 
@@ -46,6 +47,7 @@ public class BibtexPrinter {
         }
         if (sivuPrinter != null) {
             sivuPrinter.println(nimi + " = {" + mita + "},");
+//            filu += nimi + " = {" + mita + "},";
         }
         filuPrinter.println(nimi + " = {" + mita + "},");
     }

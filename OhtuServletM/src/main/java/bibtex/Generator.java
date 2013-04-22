@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Inproceedings extends HttpServlet {
+public class Generator extends HttpServlet {
     
     TyyppiArrayList tAL = new TyyppiArrayList();
     
@@ -113,7 +113,7 @@ public class Inproceedings extends HttpServlet {
             } catch (Exception ex) {
                 out.flush();
                 out.println("pakollinen kenttä puuttuu!");
-                Logger.getLogger(Inproceedings.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         } finally {            

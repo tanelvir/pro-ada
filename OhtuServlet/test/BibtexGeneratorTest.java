@@ -69,6 +69,7 @@ public class BibtexGeneratorTest extends TestCase {
     }
 
     private void testaaProceedings() {
+        
     }
 
     private void lueBibtexitArraylistiinTaulukkoihin() {
