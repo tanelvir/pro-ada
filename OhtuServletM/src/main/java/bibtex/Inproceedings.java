@@ -106,7 +106,7 @@ public class Inproceedings extends HttpServlet {
 "    </body>\n" +
 "</html>");
             try {
-                BibtexGenerator bibi = new BibtexGenerator(tAL, out);
+                BibtexGenerator bibi = new BibtexGenerator(tAL, out, false);
                   
                   //            bibi.generoiBibtext();
       //            bibi.generoiBibtext();

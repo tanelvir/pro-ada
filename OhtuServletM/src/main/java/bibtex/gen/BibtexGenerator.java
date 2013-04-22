@@ -56,9 +56,11 @@ public class BibtexGenerator {
     PrintWriter filuPrinter;
     public File file;
     public boolean suljetaanko = false;
+    public boolean testataanko;
 
-    public BibtexGenerator(ArrayList<String[]> parametriTaulut, PrintWriter sivuPrinter) throws Exception {
-
+    public BibtexGenerator(ArrayList<String[]> parametriTaulut, PrintWriter sivuPrinter, boolean testataanko) throws Exception {
+        
+        this.testataanko = testataanko;
         this.sivuPrinter = sivuPrinter;
 
         luoTextFile();
@@ -233,7 +235,8 @@ public class BibtexGenerator {
 
         try {
 //            this.filuPrinter = new PrintWriter(new FileWriter(file));
-            this.filuPrinter = new PrintWriter(file);
+            FileWriter fw = new FileWriter(file, true);
+            this.filuPrinter = new PrintWriter(fw);
         } catch (IOException e) {
             System.out.println("tekstitiedoston polkua ei löytynyt tms");
         }
@@ -242,8 +245,12 @@ public class BibtexGenerator {
     private void luoTextFile() {
 //        File dir = new File("/cs/fs/home/joeniemi/GithubProjects/pro-ada/BibtextGeneraattori");
 //        File dir = new File("/Bibtexs");
-//        dir.mkdirs(); // tekee polun (siis kansiot yms) jos niitä ei ole
+//        dir.mkdirs(); // tekee polun (siis kansiot yms) jos niitä ei ole'
+        if (testataanko) {
+            this.file = new File("testitiedosto.bib");
+        } else {
         this.file = new File("viitetiedosto.bib");
+        }
         System.out.println(file.getAbsolutePath());
     }
 
@@ -253,5 +260,8 @@ public class BibtexGenerator {
         this.Title = "Clean Code: A Handbook of Agile Software Craftsmanship";
         this.Year = "2008";
         this.Publisher = "Prentice Hall";
+    }
+    public void printFilu() {
+        
     }
 }

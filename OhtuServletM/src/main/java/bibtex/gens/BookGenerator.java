@@ -18,7 +18,6 @@ public class BookGenerator extends BibtexPrinter implements TextGenerator {
         printtaaEiPakollinen("author", bg.Author);
         printtaaEiPakollinen("editor", bg.Editor);
         printtaa("title", bg.Title);
-        printtaa("journal", bg.Journal);
         printtaa("year", bg.Year);
         printtaa("publisher", bg.Publisher);
         printtaaEiPakollinen("volume", bg.Volume);
