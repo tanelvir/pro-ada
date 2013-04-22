@@ -26,6 +26,7 @@ public class Inproceedings extends HttpServlet {
         parametrit.add(tyyppi);
         for (Entry<String, String[]> parameter : parameterSet) {
             if (parameter.getValue()[0].equals("")) continue;
+            if (parameter.getKey().equals("tyyppi")) continue;
             parametrit.add(parameter.getKey()+"@"+parameter.getValue()[0]);
             System.out.println(parameter.getKey()+"@"+parameter.getValue()[0]);
         }
@@ -38,7 +39,7 @@ public class Inproceedings extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //request.getreq
-        String[] parametrit = muunnaParametrit("inproceedings", request.getParameterMap());
+        String[] parametrit = muunnaParametrit(request.getParameter("tyyppi"), request.getParameterMap());
         PrintWriter out = response.getWriter();
         if (!tAL.add(parametrit)) {
             out.println("ID PUUTTUU TAI ID JO KÄYTÖSSÄ!");
