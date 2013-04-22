@@ -12,7 +12,7 @@ public class ConferenceGenerator extends BibtexPrinter implements TextGenerator 
     }
 
     @Override
-    public void generoi() {
+    public void generoi() throws Exception {
         sivuPrinter.println("conference@{" + bg.Tyyppi + ",");
         filuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
         printtaa("author", bg.Author);

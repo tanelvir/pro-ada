@@ -14,36 +14,42 @@ public class BibtexPrinter {
         this.bg = bg;
 
     }
-    
+
     public void printtaaAlkutag() {
         if (sivuPrinter != null) {
-            sivuPrinter.println("<form name=\"bibtex\">\n" +
-"            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
+            sivuPrinter.println("<form name=\"bibtex\">\n"
+                    + "            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
         }
     }
-    
+
     public void printtaaLopputag() {
         if (sivuPrinter != null) {
-            sivuPrinter.println("</textarea>\n" +
-"        </form>");
+            sivuPrinter.println("</textarea>\n"
+                    + "        </form>");
         }
     }
 
     //valinnaiset
     public void printtaaEiPakollinen(String nimi, String mita) {
         if (!mita.isEmpty()) {
-            printtaa(nimi, mita);
+            if (sivuPrinter != null) {
+                sivuPrinter.println(nimi + " = {" + mita + "},");
+            }
+            filuPrinter.println(nimi + " = {" + mita + "},");
         }
     }
-    
+
     //pakolliset (ja valinnaiset)
-    public void printtaa(String nimi, String mita) {
+    public void printtaa(String nimi, String mita) throws Exception {
+        if (mita.equals("")) {
+            throw new Exception("PakollinenKenttaPuuttuu");
+        }
         if (sivuPrinter != null) {
             sivuPrinter.println(nimi + " = {" + mita + "},");
         }
         filuPrinter.println(nimi + " = {" + mita + "},");
     }
-    
+
     //alkuun
     public void printtaaTyyppi(String tyyppi) {
         if (sivuPrinter != null) {
@@ -51,7 +57,7 @@ public class BibtexPrinter {
         }
         filuPrinter.println("@" + tyyppi + " {" + bg.ID + ",");
     }
-    
+
     //loppuun
     public void printtaaAaltosulku() {
         if (sivuPrinter != null) {
@@ -59,7 +65,7 @@ public class BibtexPrinter {
         }
         filuPrinter.println("}");
     }
-    
+
     public void printtaaPolku() {
         if (sivuPrinter != null) {
             sivuPrinter.println("POLKU : " + bg.file.getAbsolutePath());
@@ -73,7 +79,7 @@ public class BibtexPrinter {
 //            sivuPrinter.close();
 //        }
         if (bg.suljetaanko) {
-        filuPrinter.close();
+            filuPrinter.close();
         }
     }
 }

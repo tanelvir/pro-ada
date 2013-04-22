@@ -1,8 +1,6 @@
-
 package bibtex.gen;
 
 public interface TextGenerator {
-    
-    void generoi();
-    
+
+    void generoi() throws Exception;
 }

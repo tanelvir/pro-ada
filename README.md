@@ -17,3 +17,7 @@ CI-raportit
 
 Jenkins:
 http://t-tanelvir.users.cs.helsinki.fi/jenkins/job/OhtuServlet/
+
+
+Userssilla:
+http://t-anttkaik.users.cs.helsinki.fi/ohtuservlet/index.html

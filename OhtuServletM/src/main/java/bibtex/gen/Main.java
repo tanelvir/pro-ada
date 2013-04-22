@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String[] taulu = new String[10];
         taulu[0] = "inproceedings";
         taulu[1] = "ID@W04";
