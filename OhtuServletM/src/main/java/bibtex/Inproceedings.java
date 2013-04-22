@@ -38,6 +38,9 @@ public class Inproceedings extends HttpServlet {
         //request.getreq
         String[] parametrit = muunnaParametrit("inproceedings", request.getParameterMap());
         PrintWriter out = response.getWriter();
+        
+        //jos ID puuttuu tai on jo käytössä
+        //syötä ID uudelleen eli palaa osittain täytettyyn lomakkeeseen
         if (!tAL.add(parametrit)) {
             out.println("ID PUUTTUU TAI ID JO KÄYTÖSSÄ!");
             return;
