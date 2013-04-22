@@ -117,19 +117,6 @@ public class Generator extends HttpServlet {
 
 "    </body>\n" +
 "</html>");
-
-//            try {
-//                BibtexGenerator bibi = new BibtexGenerator(tAL, out, false);
-//                  
-//                  //            bibi.generoiBibtext();
-//      //            bibi.generoiBibtext();
-//            } catch (Exception ex) {
-//                out.flush();
-//                out.println("pakollinen kenttä puuttuu!");
-//            }
-            
-//=======
-//        //File filu = new File("viitetiedosto");
             
         printtaaAlkutag();
             
@@ -137,21 +124,6 @@ public class Generator extends HttpServlet {
         
         printtaaLopputag();
         
-        
-////=======
-////            try {
-////                BibtexGenerator bibi = new BibtexGenerator(tAL, out);
-////                  
-////                  //            bibi.generoiBibtext();
-////      //            bibi.generoiBibtext();
-////            } catch (Exception ex) {
-////                out.flush();
-////                out.println("pakollinen kenttä puuttuu!");
-////                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-////            
-////>>>>>>> 0202fe5d8a002eced576edfe5570f04f10d93017:OhtuServletM/src/main/java/bibtex/Generator.java
-//>>>>>>> 3ac58eee2a81f37cc6ba671afefe7bf11316a21e:OhtuServletM/src/main/java/bibtex/Generator.java
         } finally {            
             out.close();
         }
