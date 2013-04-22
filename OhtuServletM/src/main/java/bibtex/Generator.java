@@ -56,6 +56,7 @@ public class Generator extends HttpServlet {
 
             } catch (Exception ex) {
                 out.println("pakollinen kenttä puuttuu!");
+                tAL.remove(parametrit);
                 return;
             }
         try {
