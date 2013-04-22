@@ -47,9 +47,9 @@ public class BibtexPrinter {
     //alkuun
     public void printtaaTyyppi(String tyyppi) {
         if (sivuPrinter != null) {
-            sivuPrinter.println("@" + tyyppi + " {" + tyyppi + ",");
+            sivuPrinter.println("@" + tyyppi + " {" + bg.ID + ",");
         }
-        filuPrinter.println("@" + tyyppi + " {" + tyyppi + ",");
+        filuPrinter.println("@" + tyyppi + " {" + bg.ID + ",");
     }
     
     //loppuun
