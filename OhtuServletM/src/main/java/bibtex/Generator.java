@@ -189,3 +189,19 @@ public class Generator extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 }
+
+
+
+//    public void printtaaAlkutag() {
+//        if (sivuPrinter != null) {
+//            sivuPrinter.println("<form name=\"bibtex\">\n"
+//                    + "            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
+//        }
+//    }
+
+//    public void printtaaLopputag() {
+//        if (sivuPrinter != null) {
+//            sivuPrinter.println("</textarea>\n"
+//                    + "        </form>");
+//        }
+//    }
