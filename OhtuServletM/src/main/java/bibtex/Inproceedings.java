@@ -116,6 +116,7 @@ public class Inproceedings extends HttpServlet {
 
 "    </body>\n" +
 "</html>");
+        //File filu = new File("viitetiedosto");
         out.println(joenTeksti.toString());
         } finally {            
             out.close();
