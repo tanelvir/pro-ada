@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Generator extends HttpServlet {
     
     TyyppiArrayList tAL = new TyyppiArrayList();
+    PrintWriter out;
     
     private String[] muunnaParametrit(String tyyppi, Map<String,String[]> parameterMap) {//k
         
@@ -41,7 +42,7 @@ public class Generator extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //request.getreq
         String[] parametrit = muunnaParametrit(request.getParameter("tyyppi"), request.getParameterMap());
-        PrintWriter out = response.getWriter();
+        out = response.getWriter();
         
         //jos ID puuttuu tai on jo käytössä
         //syötä ID uudelleen eli palaa osittain täytettyyn lomakkeeseen
@@ -129,7 +130,14 @@ public class Generator extends HttpServlet {
             
 //=======
 //        //File filu = new File("viitetiedosto");
+            
+        printtaaAlkutag();
+            
         out.println(joenTeksti.toString());
+        
+        printtaaLopputag();
+        
+        
 ////=======
 ////            try {
 ////                BibtexGenerator bibi = new BibtexGenerator(tAL, out);
@@ -148,6 +156,22 @@ public class Generator extends HttpServlet {
             out.close();
         }
     }
+    
+    public void printtaaAlkutag() {
+        out.println("<form name=\"bibtex\">\n"
+                    + "            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
+    }
+    
+    public void printtaaLopputag() {
+        out.println("</textarea>\n"
+                    + "        </form>");
+    }
+
+//    public void printtaaPolku() {
+//        out.println("POLKU : " + bg.file.getAbsolutePath());
+//        out.println("<a href=\"" + bg.file.getAbsolutePath() + "\">Bibtex-tiedoston latauslinkki</a>");
+//        //<a href="default.asp">HTML Tutorial</a>
+//    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -190,27 +214,3 @@ public class Generator extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 }
-
-
-
-//    public void printtaaAlkutag() {
-//        if (sivuPrinter != null) {
-//            sivuPrinter.println("<form name=\"bibtex\">\n"
-//                    + "            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
-//        }
-//    }
-
-//    public void printtaaLopputag() {
-//        if (sivuPrinter != null) {
-//            sivuPrinter.println("</textarea>\n"
-//                    + "        </form>");
-//        }
-//    }
-
-//    public void printtaaPolku() {
-//        if (sivuPrinter != null) {
-//            sivuPrinter.println("POLKU : " + bg.file.getAbsolutePath());
-//            sivuPrinter.println("<a href=\"" + bg.file.getAbsolutePath() + "\">Bibtex-tiedoston latauslinkki</a>");
-//            //<a href="default.asp">HTML Tutorial</a>
-//        }
-//    }
