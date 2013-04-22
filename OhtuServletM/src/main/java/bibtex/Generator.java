@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Inproceedings extends HttpServlet {
+public class Generator extends HttpServlet {
     
     TyyppiArrayList tAL = new TyyppiArrayList();
     
@@ -56,7 +56,6 @@ public class Inproceedings extends HttpServlet {
 
             } catch (Exception ex) {
                 out.println("pakollinen kenttä puuttuu!");
-                Logger.getLogger(Inproceedings.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
         try {
@@ -118,6 +117,19 @@ public class Inproceedings extends HttpServlet {
 "</html>");
         //File filu = new File("viitetiedosto");
         out.println(joenTeksti.toString());
+//=======
+//            try {
+//                BibtexGenerator bibi = new BibtexGenerator(tAL, out);
+//                  
+//                  //            bibi.generoiBibtext();
+//      //            bibi.generoiBibtext();
+//            } catch (Exception ex) {
+//                out.flush();
+//                out.println("pakollinen kenttä puuttuu!");
+//                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            
+//>>>>>>> 0202fe5d8a002eced576edfe5570f04f10d93017:OhtuServletM/src/main/java/bibtex/Generator.java
         } finally {            
             out.close();
         }
