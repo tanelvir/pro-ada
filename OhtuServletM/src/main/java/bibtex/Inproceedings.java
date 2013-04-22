@@ -42,9 +42,6 @@ public class Inproceedings extends HttpServlet {
             out.println("ID PUUTTUU TAI ID JO KÄYTÖSSÄ!");
             return;
         }
-        //out.println(request.getRequestURI());
-        ArrayList<String[]> parametriTaulut = new ArrayList();
-        parametriTaulut.add(parametrit);
         try {
             out.println("<!DOCTYPE html>\n" +
 "<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +

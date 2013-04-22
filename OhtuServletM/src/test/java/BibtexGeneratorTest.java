@@ -13,6 +13,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import java.io.*;
+import java.util.*;
 import static org.junit.Assert.*;
 
 public class BibtexGeneratorTest extends TestCase {
@@ -20,7 +22,7 @@ public class BibtexGeneratorTest extends TestCase {
     private Scanner testiLukija;
     // Monen bibtexin parametritaulut
     private ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
-    private String[] parametriTaulut = new String[25];
+    private String[] articleParametrit = new String[25];
     private String[] bookParametrit = new String[25];
     private String[] inproceedingsParametrit = new String[25];
 
@@ -33,10 +35,11 @@ public class BibtexGeneratorTest extends TestCase {
 
     private void alustaArticlenParametrit() throws FileNotFoundException {
         File filu = new File("articleBibtex");
+
         Scanner lukija = new Scanner(filu);
         int indeksi = 0;
         while (lukija.hasNextLine()) {
-            parametriTaulut[indeksi] = lukija.nextLine();
+            articleParametrit[indeksi] = lukija.nextLine();
             indeksi++;
         }
         lukija.close();
@@ -93,18 +96,19 @@ public class BibtexGeneratorTest extends TestCase {
 //        } catch (FileNotFoundException e) {
 //            throw new FileNotFoundException("ei löytynyt articleBibtex filua");
 //        }
-//        ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
-//        parametriTaulut.add(articleParametrit);
-//        BibtexGenerator BG = new BibtexGenerator(parametriTaulut, null);
+//        ArrayList<String[]> pt = new ArrayList<String[]>();
+//        pt.add(articleParametrit);
+//        BibtexGenerator BG = new BibtexGenerator(pt, null);
 //
 //    }
     private void tulosta() {
+        System.out.println("JEEEEEEEEEEEEEEEEEEEEEE");
         // Menivätkö articlen parametrit oikein
-//        for (int i = 0; i < articleParametrit.length; i++) {
-//            if (articleParametrit[i] != null) {
-//                System.out.println(articleParametrit[i]);
-//            }
-//        }
+        for (int i = 0; i < articleParametrit.length; i++) {
+            if (articleParametrit[i] != null) {
+                System.out.println(articleParametrit[i]);
+            }
+        }
 
 //        for (int i = 0; i < parametriTaulut.size(); i++) {
 //            if (parametriTaulut[i] != null) {
