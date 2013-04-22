@@ -20,7 +20,7 @@ public class BibtexGeneratorTest extends TestCase {
     private Scanner testiLukija;
     // Monen bibtexin parametritaulut
     private ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
-    private String[] parametriTaulut = new String[25];
+    private String[] articleParametrit = new String[25];
     private String[] bookParametrit = new String[25];
     private String[] inproceedingsParametrit = new String[25];
 
@@ -36,7 +36,7 @@ public class BibtexGeneratorTest extends TestCase {
         Scanner lukija = new Scanner(filu);
         int indeksi = 0;
         while (lukija.hasNextLine()) {
-            parametriTaulut[indeksi] = lukija.nextLine();
+            articleParametrit[indeksi] = lukija.nextLine();
             indeksi++;
         }
         lukija.close();
