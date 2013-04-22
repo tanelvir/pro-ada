@@ -10,7 +10,8 @@ https://docs.google.com/spreadsheet/ccc?key=0AuZQeW-xIGJJdG12MjN0bWl4OVlrVXFaWlZ
 sprint 2:
 https://docs.google.com/spreadsheet/ccc?key=0AlzTvmGWYEGQdGx5dkEzdEJLdGFhRUVMazMxT3h5TFE&usp=sharing
 
-https://docs.google.com/spreadsheet/ccc?key=0AlzTvmGWYEGQdGx5dkEzdEJLdGFhRUVMazMxT3h5TFE&usp=sharing
+sprint 3:
+https://docs.google.com/spreadsheet/ccc?key=0AgC9MyDvBvNcdGZQQmFETzB5aTR1ZVhZcVE1M0lFT1E&usp=sharing
 
 CI-raportit
 
