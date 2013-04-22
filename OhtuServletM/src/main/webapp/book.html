@@ -27,7 +27,7 @@
             <br>
             <p>Choose a form type:</p>
             <Form id="myform" action="article.html" Method ="post" accept-charset="utf-8">
-
+                
                 <select id="theSelect" onchange="muutos()">
                     <option value="article">Article</option>
                     <option value="book">Book</option>
@@ -59,7 +59,7 @@
             <p>A book with an explicit publisher.</p>
 
             <form name="book" action="Inproceedings" method="post">
-
+                <input type="hidden" name="tyyppi" value="book"/>
                 <h3>Required fields:</h3>
                 <table>
                     <!-- Vain toinen - author tai editor -->
