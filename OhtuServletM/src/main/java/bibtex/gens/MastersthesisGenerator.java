@@ -12,7 +12,7 @@ public class MastersthesisGenerator extends BibtexPrinter implements TextGenerat
     }
 
     @Override
-    public void generoi() {
+    public void generoi() throws Exception {
         sivuPrinter.println("@mastersthesis{" + bg.Tyyppi + ",");
         filuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
         printtaa("author", bg.Author);

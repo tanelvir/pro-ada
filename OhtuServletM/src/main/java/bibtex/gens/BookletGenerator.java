@@ -12,7 +12,7 @@ public class BookletGenerator extends BibtexPrinter implements TextGenerator {
     }
 
     @Override
-    public void generoi() {
+    public void generoi() throws Exception {
         sivuPrinter.println("@booklet{" + bg.Tyyppi + ",");
         filuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
         printtaa("title", bg.Title);

@@ -13,7 +13,7 @@ public class InproceedingsGenerator extends BibtexPrinter implements TextGenerat
     }
 
     @Override
-    public void generoi() {
+    public void generoi() throws Exception {
         printtaaAlkutag();
         printtaaTyyppi(bg.Tyyppi);
         printtaa("author", bg.Author);

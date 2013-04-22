@@ -12,7 +12,7 @@ public class UnpublishedGenerator extends BibtexPrinter implements TextGenerator
     }
 
     @Override
-    public void generoi() {
+    public void generoi() throws Exception {
         sivuPrinter.println("unpublished@{" + bg.Tyyppi + ",");
         filuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
         printtaa("author", bg.Author);

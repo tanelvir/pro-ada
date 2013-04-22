@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -99,10 +101,16 @@ public class Inproceedings extends HttpServlet {
 
 "    </body>\n" +
 "</html>");
-          BibtexGenerator bibi = new BibtexGenerator(tAL, out);
-            
-            //bibtexin generointi, tätä ei enää tarvita!
-//            bibi.generoiBibtext();
+            try {
+                BibtexGenerator bibi = new BibtexGenerator(tAL, out);
+                  
+                  //            bibi.generoiBibtext();
+      //            bibi.generoiBibtext();
+            } catch (Exception ex) {
+                out.flush();
+                out.println("pakollinen kenttä puuttuu!");
+                Logger.getLogger(Inproceedings.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         } finally {            
             out.close();

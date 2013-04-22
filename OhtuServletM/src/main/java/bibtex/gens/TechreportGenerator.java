@@ -12,7 +12,7 @@ public class TechreportGenerator extends BibtexPrinter implements TextGenerator 
     }
 
     @Override
-    public void generoi() {
+    public void generoi() throws Exception {
         sivuPrinter.println("techreport@{" + bg.Tyyppi + ",");
         filuPrinter.println("inproceedings@{" + bg.Tyyppi + ",");
         printtaa("author", bg.Author);

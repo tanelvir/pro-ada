@@ -57,7 +57,7 @@ public class BibtexGenerator {
     public File file;
     public boolean suljetaanko = false;
 
-    public BibtexGenerator(ArrayList<String[]> parametriTaulut, PrintWriter sivuPrinter) {
+    public BibtexGenerator(ArrayList<String[]> parametriTaulut, PrintWriter sivuPrinter) throws Exception {
 
         this.sivuPrinter = sivuPrinter;
 
@@ -75,7 +75,7 @@ public class BibtexGenerator {
         muodostaBibtexit(parametriTaulut);
     }
 
-    private void muodostaBibtexit(ArrayList<String[]> parametriTaulut) {
+    private void muodostaBibtexit(ArrayList<String[]> parametriTaulut) throws Exception {
 
         for (int i = 0; i < parametriTaulut.size(); i++) {
             // Viimeisen bibtex printin jälkeen printterit suljetaan
@@ -87,7 +87,7 @@ public class BibtexGenerator {
         }
     }
 
-    private void alustaYhdenBibtexinParametrit(String[] parametrit) {
+    private void alustaYhdenBibtexinParametrit(String[] parametrit) throws Exception {
         // tyyppi = id, author, title, article jne
         this.Tyyppi = parametrit[0];
         for (int i = 1; i < parametrit.length; i++) {
@@ -101,7 +101,7 @@ public class BibtexGenerator {
         }
     }
 
-    private void lisaaParametri(String tyyppi, String arvo) {
+    private void lisaaParametri(String tyyppi, String arvo) throws Exception {
         tyyppi = tyyppi.toLowerCase();
         if (tyyppi.equals("id")) {
             this.ID = arvo;
@@ -180,7 +180,7 @@ public class BibtexGenerator {
         return arvo;
     }
 
-    public void generoiBibtex() {
+    public void generoiBibtex() throws Exception {
         if (Tyyppi == null) {
             return;
         }
