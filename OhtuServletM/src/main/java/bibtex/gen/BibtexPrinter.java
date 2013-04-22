@@ -16,19 +16,19 @@ public class BibtexPrinter {
 
     }
 
-    public void printtaaAlkutag() {
-        if (sivuPrinter != null) {
-            sivuPrinter.println("<form name=\"bibtex\">\n"
-                    + "            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
-        }
-    }
+//    public void printtaaAlkutag() {
+//        if (sivuPrinter != null) {
+//            sivuPrinter.println("<form name=\"bibtex\">\n"
+//                    + "            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
+//        }
+//    }
 
-    public void printtaaLopputag() {
-        if (sivuPrinter != null) {
-            sivuPrinter.println("</textarea>\n"
-                    + "        </form>");
-        }
-    }
+//    public void printtaaLopputag() {
+//        if (sivuPrinter != null) {
+//            sivuPrinter.println("</textarea>\n"
+//                    + "        </form>");
+//        }
+//    }
 
     //valinnaiset
     public void printtaaEiPakollinen(String nimi, String mita) {
@@ -68,13 +68,13 @@ public class BibtexPrinter {
         filuPrinter.println("}");
     }
 
-    public void printtaaPolku() {
-        if (sivuPrinter != null) {
-            sivuPrinter.println("POLKU : " + bg.file.getAbsolutePath());
-            sivuPrinter.println("<a href=\"" + bg.file.getAbsolutePath() + "\">Bibtex-tiedoston latauslinkki</a>");
-            //<a href="default.asp">HTML Tutorial</a>
-        }
-    }
+//    public void printtaaPolku() {
+//        if (sivuPrinter != null) {
+//            sivuPrinter.println("POLKU : " + bg.file.getAbsolutePath());
+//            sivuPrinter.println("<a href=\"" + bg.file.getAbsolutePath() + "\">Bibtex-tiedoston latauslinkki</a>");
+//            //<a href="default.asp">HTML Tutorial</a>
+//        }
+//    }
 
     public void suljePrintterit() {
 //        if (bg.suljetaanko) {

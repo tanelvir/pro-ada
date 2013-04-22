@@ -13,7 +13,7 @@ public class BookGenerator extends BibtexPrinter implements TextGenerator {
 
     @Override
     public void generoi() throws Exception {
-        printtaaAlkutag();
+//        printtaaAlkutag();
         printtaaTyyppi(bg.Tyyppi);
         printtaaEiPakollinen("author", bg.Author);
         printtaaEiPakollinen("editor", bg.Editor);
@@ -29,8 +29,8 @@ public class BookGenerator extends BibtexPrinter implements TextGenerator {
         printtaaEiPakollinen("note", bg.Note);
         printtaaEiPakollinen("key", bg.Key);
         printtaaAaltosulku();
-        printtaaLopputag();
-        printtaaPolku();
+//        printtaaLopputag();
+//        printtaaPolku();
         suljePrintterit();
     }
 }
