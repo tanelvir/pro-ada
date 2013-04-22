@@ -20,7 +20,7 @@ public class BibtexGeneratorTest extends TestCase {
     private Scanner testiLukija;
     // Monen bibtexin parametritaulut
     private ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
-    private String[] articleParametrit = new String[25];
+    private String[] parametriTaulut = new String[25];
     private String[] bookParametrit = new String[25];
     private String[] inproceedingsParametrit = new String[25];
 
@@ -28,6 +28,7 @@ public class BibtexGeneratorTest extends TestCase {
         super(testName);
         alustaArticlenParametrit();
         alustaMonenBibtexinTiedosto();
+        tulosta();
     }
 
     private void alustaArticlenParametrit() throws FileNotFoundException {
@@ -35,7 +36,7 @@ public class BibtexGeneratorTest extends TestCase {
         Scanner lukija = new Scanner(filu);
         int indeksi = 0;
         while (lukija.hasNextLine()) {
-            articleParametrit[indeksi] = lukija.nextLine();
+            parametriTaulut[indeksi] = lukija.nextLine();
             indeksi++;
         }
         lukija.close();
@@ -85,16 +86,32 @@ public class BibtexGeneratorTest extends TestCase {
 
 //    public void testArticleGenerator() throws FileNotFoundException {
 //
-////        File filu = new File("articleBibtex");
-////        PrintWriter sivuPrinter;
-////        try {
-////            sivuPrinter = new PrintWriter(filu);
-////        } catch (FileNotFoundException e) {
-////            throw new FileNotFoundException("ei löytynyt articleBibtex filua");
-////        }
+//        File filu = new File("articleBibtex");
+//        PrintWriter sivuPrinter;
+//        try {
+//            sivuPrinter = new PrintWriter(filu);
+//        } catch (FileNotFoundException e) {
+//            throw new FileNotFoundException("ei löytynyt articleBibtex filua");
+//        }
 //        ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
 //        parametriTaulut.add(articleParametrit);
 //        BibtexGenerator BG = new BibtexGenerator(parametriTaulut, null);
 //
 //    }
+    private void tulosta() {
+        // Menivätkö articlen parametrit oikein
+//        for (int i = 0; i < articleParametrit.length; i++) {
+//            if (articleParametrit[i] != null) {
+//                System.out.println(articleParametrit[i]);
+//            }
+//        }
+
+//        for (int i = 0; i < parametriTaulut.size(); i++) {
+//            if (parametriTaulut[i] != null) {
+//                System.out.println(parametriTaulut[i]);
+//            }
+//        }
+
+
+    }
 }

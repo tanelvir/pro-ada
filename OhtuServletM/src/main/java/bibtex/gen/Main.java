@@ -26,10 +26,18 @@ public class Main {
         taulu2[6] = "volume@15";
         taulu2[7] = "number@5";
         taulu2[8] = "address@LOL";
-
+        
+        String taulu3[] = new String[10];
+        taulu3[0] = "book";
+        taulu3[1] = "hahaha";
+        taulu3[2] = "hehehehe";
+        taulu3[3] = "lol";
+        taulu3[4] = ":DDDDDDDDDDDDDDDDDDDDDD";
+        
         ArrayList<String[]> pt = new ArrayList<String[]>();
         pt.add(taulu);
         pt.add(taulu2);
+        pt.add(taulu3);
         
         BibtexGenerator bg = new BibtexGenerator(pt, null);
     }

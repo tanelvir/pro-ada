@@ -69,9 +69,11 @@ public class BibtexPrinter {
     }
 
     public void suljePrintterit() {
+//        if (bg.suljetaanko) {
+//            sivuPrinter.close();
+//        }
         if (bg.suljetaanko) {
-            sivuPrinter.close();
-        }
         filuPrinter.close();
+        }
     }
 }

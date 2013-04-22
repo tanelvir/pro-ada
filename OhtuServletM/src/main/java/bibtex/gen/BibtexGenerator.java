@@ -80,7 +80,7 @@ public class BibtexGenerator {
         for (int i = 0; i < parametriTaulut.size(); i++) {
             // Viimeisen bibtex printin jälkeen printterit suljetaan
             if (i == parametriTaulut.size() - 1) {
-                suljetaanko = false;
+                suljetaanko = true;
             }
             alustaYhdenBibtexinParametrit(parametriTaulut.get(i));
             generoiBibtex();
