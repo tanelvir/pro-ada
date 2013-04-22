@@ -3,6 +3,7 @@ package bibtex;
 import bibtex.gen.BibtexGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Inproceedings extends HttpServlet {
+public class Generator extends HttpServlet {
     
     TyyppiArrayList tAL = new TyyppiArrayList();
     
@@ -48,6 +49,15 @@ public class Inproceedings extends HttpServlet {
             out.println("ID PUUTTUU TAI ID JO KÄYTÖSSÄ!");
             return;
         }
+        StringWriter joenTeksti = new StringWriter();
+        PrintWriter joenTeksti2 = new PrintWriter(joenTeksti);
+        try {
+            BibtexGenerator bibi = new BibtexGenerator(tAL, joenTeksti2, false);
+
+            } catch (Exception ex) {
+                out.println("pakollinen kenttä puuttuu!");
+                return;
+            }
         try {
             out.println("<!DOCTYPE html>\n" +
 "<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +
@@ -105,17 +115,34 @@ public class Inproceedings extends HttpServlet {
 
 "    </body>\n" +
 "</html>");
-            try {
-                BibtexGenerator bibi = new BibtexGenerator(tAL, out, false);
-                  
-                  //            bibi.generoiBibtext();
-      //            bibi.generoiBibtext();
-            } catch (Exception ex) {
-                out.flush();
-                out.println("pakollinen kenttä puuttuu!");
-                Logger.getLogger(Inproceedings.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+//            try {
+//                BibtexGenerator bibi = new BibtexGenerator(tAL, out, false);
+//                  
+//                  //            bibi.generoiBibtext();
+//      //            bibi.generoiBibtext();
+//            } catch (Exception ex) {
+//                out.flush();
+//                out.println("pakollinen kenttä puuttuu!");
+//            }
             
+//=======
+//        //File filu = new File("viitetiedosto");
+        out.println(joenTeksti.toString());
+////=======
+////            try {
+////                BibtexGenerator bibi = new BibtexGenerator(tAL, out);
+////                  
+////                  //            bibi.generoiBibtext();
+////      //            bibi.generoiBibtext();
+////            } catch (Exception ex) {
+////                out.flush();
+////                out.println("pakollinen kenttä puuttuu!");
+////                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
+////            }
+////            
+////>>>>>>> 0202fe5d8a002eced576edfe5570f04f10d93017:OhtuServletM/src/main/java/bibtex/Generator.java
+//>>>>>>> 3ac58eee2a81f37cc6ba671afefe7bf11316a21e:OhtuServletM/src/main/java/bibtex/Generator.java
         } finally {            
             out.close();
         }
