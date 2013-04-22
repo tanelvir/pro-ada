@@ -34,19 +34,18 @@ public class BibtexGeneratorTest extends TestCase {
         super(testName);
         alustaArticlenParametrit();
         alustaMonenBibtexinTiedosto();
-        tulosta();
     }
 
     private void alustaArticlenParametrit() throws FileNotFoundException {
-        String taulu[] = new String[10];
-        taulu[0] = "article";
-        taulu[1] = "ID@CBH91";
-        taulu[2] = "author@Allan Collins and John Seely Brown and Ann Holum";
-        taulu[3] = "title@Cognitive apprenticeship: making thinking visible";
-        taulu[4] = "journal@American Educator";
-        taulu[5] = "year@1991";
-        taulu[6] = "volume@6";
-        taulu[7] = "pages@38--46";
+        articleParametrit[0] = "article";
+        articleParametrit[1] = "ID@CBH91";
+        articleParametrit[2] = "author@Allan Collins and John Seely Brown and Ann Holum";
+        articleParametrit[3] = "title@Cognitive apprenticeship: making thinking visible";
+        articleParametrit[4] = "journal@American Educator";
+        articleParametrit[5] = "year@1991";
+        articleParametrit[6] = "volume@6";
+        articleParametrit[7] = "pages@38--46";
+
     }
 
     private void alustaMonenBibtexinTiedosto() throws FileNotFoundException {
@@ -71,9 +70,13 @@ public class BibtexGeneratorTest extends TestCase {
         String taulu3[] = new String[10];
         taulu3[0] = "book";
         taulu3[1] = "ID@BA04";
-        taulu3[2] = "hehehehe";
-        taulu3[3] = "lol";
-        taulu3[4] = ":DDDDDDDDDDDDDDDDDDDDDD";
+        taulu3[2] = "author@Beck, Kent and Andres, Cynthia";
+        taulu3[3] = "title@Extreme Programming Explained: Embrace Change (2nd Edition)";
+        taulu3[4] = "year@2004";
+        taulu3[5] = "publisher@Addison-Wesley Professional";
+        parametriTaulut.add(taulu);
+        parametriTaulut.add(taulu2);
+        parametriTaulut.add(taulu3);
     }
 
     @Override
@@ -102,37 +105,33 @@ public class BibtexGeneratorTest extends TestCase {
     }
 
     public void testArticleGenerator() throws FileNotFoundException, Exception {
-
-//        File filu = new File("articleBibtex");
-//        PrintWriter sivuPrinter;
-//        try {
-//            sivuPrinter = new PrintWriter(filu);
-//        } catch (FileNotFoundException e) {
-//            throw new FileNotFoundException("ei löytynyt articleBibtex filua");
-//        }
         ArrayList<String[]> pt = new ArrayList<String[]>();
         pt.add(articleParametrit);
         BibtexGenerator BG = new BibtexGenerator(pt, null);
 
     }
 
-    private void tulosta() {
-        System.out.println("JEEEEEEEEEEEEEEEEEEEEEE");
-        // Menivätkö articlen parametrit oikein
-        for (int i = 0; i < articleParametrit.length; i++) {
-            if (articleParametrit[i] != null) {
-                System.out.println(articleParametrit[i]);
-            }
-        }
-    }
+//    private void tulosta() {
+//        System.out.println("JEEEEEEEEEEEEEEEEEEEEEE");
+//        // Menivätkö articlen parametrit oikein
+//        for (int i = 0; i < articleParametrit.length; i++) {
+//            if (articleParametrit[i] != null) {
+//                System.out.println(articleParametrit[i]);
+//            }
+//        }
+//    }
+    
+    
+    
+    
+    
+    
 //        for (int i = 0; i < parametriTaulut.size(); i++) {
 //            if (parametriTaulut[i] != null) {
 //                System.out.println(parametriTaulut[i]);
 //            }
 //        }
 }
-
-
 //
 //        Scanner lukija = new Scanner(new File("monenBibtexinTiedosto"));
 //        int indeksi = 0;
@@ -148,7 +147,6 @@ public class BibtexGeneratorTest extends TestCase {
 //            indeksi++;
 //        }
 //        lukija.close();
-
 //        File filu = new File("articleBibtex");
 //        Scanner lukija = new Scanner(filu);
 //        int indeksi = 0;
