@@ -16,7 +16,7 @@ https://docs.google.com/spreadsheet/ccc?key=0AgC9MyDvBvNcdGZQQmFETzB5aTR1ZVhZcVE
 CI-raportit
 
 Jenkins:
-http://t-tanelvir.users.cs.helsinki.fi/jenkins/job/OhtuServlet/
+http://t-tanelvir.users.cs.helsinki.fi/jenkins/job/OhtuServlet/ kayttajatunnus: admin salasana: pro-ada
 
 
 Userssilla:
