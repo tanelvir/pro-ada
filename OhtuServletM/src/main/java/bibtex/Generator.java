@@ -47,7 +47,7 @@ public class Generator extends HttpServlet {
         //jos ID puuttuu tai on jo käytössä
         //syötä ID uudelleen eli palaa osittain täytettyyn lomakkeeseen
         if (!tAL.add(parametrit)) {
-            out.println("ID PUUTTUU TAI ID JO KÄYTÖSSÄ!");
+            out.println("ID on jo käytössä!");
             return;
         }
         StringWriter joenTeksti = new StringWriter();
@@ -57,7 +57,7 @@ public class Generator extends HttpServlet {
 
             } catch (Exception ex) {
                 out.println("pakollinen kenttä puuttuu!");
-                tAL.remove(parametrit);
+                System.out.println("pakollinen kenttä puuttui. poisto = "+tAL.remove(tAL.size()-1));
                 return;
             }
         try {
