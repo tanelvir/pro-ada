@@ -21,7 +21,7 @@ public class ArticleGenerator extends BibtexPrinter implements TextGenerator {
         printtaa("year", bg.Year);
         printtaaEiPakollinen("volume", bg.Volume);
         printtaaEiPakollinen("number", bg.Number);
-        printtaaEiPakollinen("pages", bg.Series);
+        printtaaEiPakollinen("pages", bg.Pages);
         printtaaEiPakollinen("month", bg.Month);
         printtaaEiPakollinen("note", bg.Edition);
         printtaaEiPakollinen("key", bg.Month);

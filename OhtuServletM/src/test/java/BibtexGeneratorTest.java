@@ -29,23 +29,11 @@ public class BibtexGeneratorTest extends TestCase {
     private String[] articleParametrit = new String[25];
     private String[] bookParametrit = new String[25];
     private String[] inproceedingsParametrit = new String[25];
+    private Scanner lukija;
 
     public BibtexGeneratorTest(String testName) throws FileNotFoundException, IOException {
         super(testName);
-        alustaArticlenParametrit();
         alustaMonenBibtexinTiedosto();
-    }
-
-    private void alustaArticlenParametrit() throws FileNotFoundException {
-        articleParametrit[0] = "article";
-        articleParametrit[1] = "ID@CBH91";
-        articleParametrit[2] = "author@Allan Collins and John Seely Brown and Ann Holum";
-        articleParametrit[3] = "title@Cognitive apprenticeship: making thinking visible";
-        articleParametrit[4] = "journal@American Educator";
-        articleParametrit[5] = "year@1991";
-        articleParametrit[6] = "volume@6";
-        articleParametrit[7] = "pages@38--46";
-
     }
 
     private void alustaMonenBibtexinTiedosto() throws FileNotFoundException {
@@ -56,6 +44,7 @@ public class BibtexGeneratorTest extends TestCase {
         taulu[3] = "title@Extreme Apprenticeship Method in Teaching Programming for Beginners.";
         taulu[4] = "year@2011";
         taulu[5] = "booktitle@SIGCSE '11: Proceedings of the 42nd SIGCSE technical symposium on Computer science education";
+        this.inproceedingsParametrit = taulu;
 
         String taulu2[] = new String[10];
         taulu2[0] = "article";
@@ -66,6 +55,7 @@ public class BibtexGeneratorTest extends TestCase {
         taulu2[5] = "year@1991";
         taulu2[6] = "volume@6";
         taulu2[7] = "pages@38--46";
+        this.articleParametrit = taulu2;
 
         String taulu3[] = new String[10];
         taulu3[0] = "book";
@@ -74,6 +64,8 @@ public class BibtexGeneratorTest extends TestCase {
         taulu3[3] = "title@Extreme Programming Explained: Embrace Change (2nd Edition)";
         taulu3[4] = "year@2004";
         taulu3[5] = "publisher@Addison-Wesley Professional";
+        this.bookParametrit = taulu3;
+
         parametriTaulut.add(taulu);
         parametriTaulut.add(taulu2);
         parametriTaulut.add(taulu3);
@@ -89,9 +81,15 @@ public class BibtexGeneratorTest extends TestCase {
         super.tearDown();
     }
 
+    private void alustaTestejaVarten(ArrayList<String[]> pt) throws Exception {
+        BibtexGenerator BG = new BibtexGenerator(pt, null, true);
+
+        File testFilu = new File("testitiedosto.bib");
+        lukija = new Scanner(testFilu);
+    }
+
     @Test
     public void testBibtexGeneratorConstructor() throws FileNotFoundException, Exception {
-//        String url = getClass().getClassLoader().getResource("articleBibtex").getFile();
         File filu = new File("tyhjaFilu");
         PrintWriter sivuPrinter;
         try {
@@ -104,45 +102,49 @@ public class BibtexGeneratorTest extends TestCase {
         assertNotNull("bibtexGenerator olio oli null", BG);
     }
 
+    @Test
     public void testArticleGenerator() throws FileNotFoundException, Exception {
+        File poistetaanEnsin = new File("testitiedosto.bib");
+        poistetaanEnsin.delete();
         ArrayList<String[]> pt = new ArrayList<String[]>();
         pt.add(articleParametrit);
-        BibtexGenerator BG = new BibtexGenerator(pt, null, true);
-        
-        // tehtävä uusi filu vissiin
-        
-        
+        alustaTestejaVarten(pt);
+        String rivi = lukija.nextLine();
+        assertEquals("@article{CBH91,", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("author = {Allan Collins and John Seely Brown and Ann Holum},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("title = {Cognitive apprenticeship: making thinking visible},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("journal = {American Educator},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("year = {1991},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("volume = {6},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("pages = {38--46},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("}", rivi);
     }
 
-    
-    
-    
-//        for (int i = 0; i < parametriTaulut.size(); i++) {
-//            if (parametriTaulut[i] != null) {
-//                System.out.println(parametriTaulut[i]);
-//            }
-//        }
+    @Test
+    public void testBookGenerator() throws FileNotFoundException, Exception {
+        File poistetaanEnsin = new File("testitiedosto.bib");
+        poistetaanEnsin.delete();
+        ArrayList<String[]> pt = new ArrayList<String[]>();
+        pt.add(bookParametrit);
+        alustaTestejaVarten(pt);
+        String rivi = lukija.nextLine();
+        assertEquals("@book{BA04,", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("author = {Beck, Kent and Andres, Cynthia},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("title = {Extreme Programming Explained: Embrace Change (2nd Edition)},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("year = {2004},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("publisher = {Addison-Wesley Professional},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("}", rivi);
+    }
 }
-//
-//        Scanner lukija = new Scanner(new File("monenBibtexinTiedosto"));
-//        int indeksi = 0;
-//        String taulu[] = new String[25];
-//        while (lukija.hasNextLine()) {
-//            String rivi = lukija.nextLine();
-//            if (rivi.equals("")) {
-//                parametriTaulut.add(taulu);
-//                taulu = new String[25];
-//                indeksi = 0;
-//            }
-//            taulu[indeksi] = lukija.nextLine();
-//            indeksi++;
-//        }
-//        lukija.close();
-//        File filu = new File("articleBibtex");
-//        Scanner lukija = new Scanner(filu);
-//        int indeksi = 0;
-//        while (lukija.hasNextLine()) {
-//            articleParametrit[indeksi] = lukija.nextLine();;
-//            indeksi++;
-//        }
-//        lukija.close();
