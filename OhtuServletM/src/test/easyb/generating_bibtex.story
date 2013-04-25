@@ -101,7 +101,7 @@ scenario "user cannot view bibtex code if some of the required fields are left b
     }
 
     then 'user sees an error message', {
-         driver.getPageSource().contains("pakollinen kenttä puuttuu!").shouldBe true
+         driver.getPageSource().contains("Pakollinen kenttä puuttuu!").shouldBe true
     }
 }
 
