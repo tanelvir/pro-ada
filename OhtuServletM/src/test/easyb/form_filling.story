@@ -28,7 +28,7 @@ scenario "user can send an inproceedings form", {
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='year']"));
         element.sendKeys("1995");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='id']"));
-        element.sendKeys("1");
+        element.sendKeys("9001");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
         element.submit();
     }
@@ -57,7 +57,7 @@ scenario "an incorrectly filled form is not sent", {
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='year']"));
         element.sendKeys("1995");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='id']"));
-        element.sendKeys("2");
+        element.sendKeys("9002");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
         element.submit();
     }
@@ -86,7 +86,7 @@ scenario "correctly filled form with special characters is sent", {
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='year']"));
         element.sendKeys("2013");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='id']"));
-        element.sendKeys("5");
+        element.sendKeys("9005");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
         element.submit();
     }
