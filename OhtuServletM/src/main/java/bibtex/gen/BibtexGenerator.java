@@ -139,8 +139,9 @@ public class BibtexGenerator {
         return tyyppi;
     }
 
+    // Hakee rivin @ jälkeisen arvon, esim rivistä "journal@American Educator"
+    // metodi palauttaa "American Educator"
     private String checkArvo(String rivi) {
-        String arvo = "";
         int indeksi = 0;
         // ensin katsotaan, mistä kohtaa @ löytyy
         for (int i = 0; i < rivi.length() - 1; i++) {
@@ -149,24 +150,17 @@ public class BibtexGenerator {
                 break;
             }
         }
-
-        for (int i = indeksi + 1; i < rivi.length(); i++) {
-            arvo += rivi.charAt(i);
-        }
-        return arvo;
+        return rivi.substring(indeksi+1);
     }
 
     public void generoiBibtex() throws Exception {
-        if (Tyyppi == null) {
-            return;
-        }
         if (Tyyppi.equals("article")) {
             ArticleGenerator BG = new ArticleGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         } else if (Tyyppi.equals("book")) {
             BookGenerator BG = new BookGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
-        } else if (Tyyppi.equals("inproceedings")) {
+        } else {
             InproceedingsGenerator BG = new InproceedingsGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         }
@@ -189,14 +183,6 @@ public class BibtexGenerator {
             this.file = new File("viitetiedosto.bib");
         }
         System.out.println(file.getAbsolutePath());
-    }
-
-    public void alustaTestejaVarten() {
-        this.Tyyppi = "Martin09";
-        this.Author = "Martin, Robert";
-        this.Title = "Clean Code: A Handbook of Agile Software Craftsmanship";
-        this.Year = "2008";
-        this.Publisher = "Prentice Hall";
     }
 
     private void alustaKentatTyhjijsi() {

@@ -27,7 +27,7 @@ scenario "user can fill an inproceedings form", {
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='year']"));
         element.sendKeys("2001");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='id']"));
-        element.sendKeys("3");
+        element.sendKeys("9003");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
         element.submit();
     }
@@ -56,7 +56,7 @@ scenario "user can fill an article form", {
         element = driver.findElement(By.xpath("//form[@name='article']//input[@name='year']"));
         element.sendKeys("2007");
         element = driver.findElement(By.xpath("//form[@name='article']//input[@name='id']"));
-        element.sendKeys("4");
+        element.sendKeys("9004");
         element = driver.findElement(By.xpath("//form[@name='article']//input[@type='submit']"));
         element.submit();
     }
