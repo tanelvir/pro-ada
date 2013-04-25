@@ -14,7 +14,6 @@ public class InproceedingsGenerator extends BibtexPrinter implements TextGenerat
 
     @Override
     public void generoi() throws Exception {
-//        printtaaAlkutag();
         printtaaTyyppi(bg.Tyyppi);
         printtaa("author", bg.Author);
         printtaa("title", bg.Title);
@@ -32,8 +31,6 @@ public class InproceedingsGenerator extends BibtexPrinter implements TextGenerat
         printtaaEiPakollinen("note", bg.Note);
         printtaaEiPakollinen("key", bg.Key);
         printtaaAaltosulku();
-//        printtaaLopputag();
-//        printtaaPolku();
         suljePrintterit();
     }
 }
