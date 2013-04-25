@@ -21,3 +21,6 @@ http://t-tanelvir.users.cs.helsinki.fi/jenkins/job/OhtuServlet/ kayttajatunnus: 
 
 Userssilla:
 http://t-anttkaik.users.cs.helsinki.fi/OhtuServlet2/index.html
+
+Ryhmäraportti:
+https://docs.google.com/document/d/1xpY3-ZR1akfAcvt0SvCTLEg9tkL1mCjnanxsy4x8M_8/edit?usp=sharing
