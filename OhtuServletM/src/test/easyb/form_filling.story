@@ -19,21 +19,22 @@ scenario "user can fill an inproceedings form", {
     }
 
     when 'the required fields have been filled', {
-        element = driver.findElement(By.name("author"));
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='author']"));
         element.sendKeys("Pekka Pouta");
-        element = driver.findElement(By.name("title"));
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='title']"));
         element.sendKeys("Ilmoja pidelty");
-        element = driver.findElement(By.name("booktitle"));
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='booktitle']"));
         element.sendKeys("Uudet tuulet");
-        element = driver.findElement(By.name("year"));
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='year']"));
         element.sendKeys("1995");
-        element = driver.findElement(By.name("id"));
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='id']"));
         element.sendKeys("1");
-        element = driver.findElement(By.name("submit"));
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
         element.submit();
     }
  
     then 'the form has been sent', {
-        driver.getPageSource().contains("polku").shouldBe true
+        System.out.println(driver.getPageSource())
+        driver.getPageSource().contains("Pekka Pouta").shouldBe true
     }
 }
