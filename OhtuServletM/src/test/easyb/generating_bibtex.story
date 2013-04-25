@@ -5,6 +5,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
 
+
+
 description 'User can view bibtex code'
 
 scenario "user can view bibtex code when the form has been properly filled", {
@@ -43,6 +45,38 @@ scenario "user can view bibtex code when the form has been properly filled", {
 
 
 
+scenario "bibtex is generated correctly with special characters", {
+    given 'inproceedings form is selected', {
+        driver = new HtmlUnitDriver(true);
+        driver.get("http://localhost:8080");
+        element = driver.findElement(By.id("theSelect"));
+        Select clickThis = new Select(element);
+        clickThis.selectByValue("inproceedings");
+        element = driver.findElement(By.name("submit"));       
+        element.click();
+    }
+    when 'the form has been filled with special characters', {
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='author']"));
+        element.sendKeys("Ihää");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='title']"));
+        element.sendKeys("Naurattaa");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='booktitle']"));
+        element.sendKeys("Tuulet");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='year']"));
+        element.sendKeys("1335");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='id']"));
+        element.sendKeys("9007");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
+        element.submit();
+    }
+    then 'bibtex is generated correctly', {
+        driver.getPageSource().contains("Ih\\&quot;{a}\\&quot;{a}").shouldBe true
+    }
+}
+
+
+
+
 
 
 scenario "user cannot view bibtex code if some of the required fields are left blank", {
@@ -67,10 +101,9 @@ scenario "user cannot view bibtex code if some of the required fields are left b
     }
 
     then 'user sees an error message', {
-         driver.getPageSource().contains("pakollinen kenttä puuttuu!").shouldBe true
+         driver.getPageSource().contains("Pakollinen kenttä puuttuu!").shouldBe true
     }
 }
-
 
 
 
