@@ -1,4 +1,5 @@
 
+import bibtex.Generator;
 import bibtex.gen.BibtexGenerator;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,14 +30,15 @@ public class BibtexGeneratorTest extends TestCase {
     private String[] articleParametrit = new String[25];
     private String[] bookParametrit = new String[25];
     private String[] inproceedingsParametrit = new String[25];
+    private String[] ääkkösetParametrit = new String[25];
     private Scanner lukija;
 
     public BibtexGeneratorTest(String testName) throws FileNotFoundException, IOException {
         super(testName);
-        alustaMonenBibtexinTiedosto();
+        alustaBibtexParametrit();
     }
 
-    private void alustaMonenBibtexinTiedosto() throws FileNotFoundException {
+    private void alustaBibtexParametrit() throws FileNotFoundException {
         String[] taulu = new String[10];
         taulu[0] = "inproceedings";
         taulu[1] = "ID@VPL11";
@@ -44,6 +46,7 @@ public class BibtexGeneratorTest extends TestCase {
         taulu[3] = "title@Extreme Apprenticeship Method in Teaching Programming for Beginners.";
         taulu[4] = "booktitle@SIGCSE '11: Proceedings of the 42nd SIGCSE technical symposium on Computer science education";
         taulu[5] = "year@2011";
+        taulu[6] = "organization@Computer Science Department";
         this.inproceedingsParametrit = taulu;
 
         String taulu2[] = new String[10];
@@ -57,18 +60,36 @@ public class BibtexGeneratorTest extends TestCase {
         taulu2[7] = "pages@38--46";
         this.articleParametrit = taulu2;
 
-        String taulu3[] = new String[10];
+        String taulu3[] = new String[15];
         taulu3[0] = "book";
         taulu3[1] = "ID@BA04";
         taulu3[2] = "author@Beck, Kent and Andres, Cynthia";
         taulu3[3] = "title@Extreme Programming Explained: Embrace Change (2nd Edition)";
         taulu3[4] = "year@2004";
         taulu3[5] = "publisher@Addison-Wesley Professional";
+        taulu3[6] = "series@Extreme Programming";
+        taulu3[7] = "address@Backstreet 123";
+        taulu3[8] = "edition@Edition 2.27";
+        taulu3[9] = "month@January";
+        taulu3[10] = "note@Best Book Ever";
+        taulu3[11] = "key@SuperKey123";
         this.bookParametrit = taulu3;
 
         monenBibtexinTaulut.add(taulu);
         monenBibtexinTaulut.add(taulu2);
         monenBibtexinTaulut.add(taulu3);
+
+        String taulu4[] = new String[15];
+        taulu4[0] = "book";
+        taulu4[1] = "ID@124";
+        taulu4[2] = "author@Kalle Päätalo";
+        taulu4[3] = "editor@Kallekallekalle";
+        taulu4[4] = "title@Höylin Miehen Syksy";
+        taulu4[5] = "publisher@WSOY";
+        taulu4[6] = "year@1970";
+        taulu4[7] = "Edition@Ämpäri Öljy äiti :D";
+        taulu4[8] = "month@February";
+        this.ääkkösetParametrit = taulu4;
     }
 
     @Override
@@ -144,6 +165,18 @@ public class BibtexGeneratorTest extends TestCase {
         rivi = lukija.nextLine();
         assertEquals("publisher = {Addison-Wesley Professional},", rivi);
         rivi = lukija.nextLine();
+        assertEquals("series = {Extreme Programming},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("address = {Backstreet 123},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("edition = {Edition 2.27},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("month = {January},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("note = {Best Book Ever},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("key = {SuperKey123},", rivi);
+        rivi = lukija.nextLine();
         assertEquals("}", rivi);
     }
 
@@ -163,6 +196,8 @@ public class BibtexGeneratorTest extends TestCase {
         rivi = lukija.nextLine();
         assertEquals("year = {2011},", rivi);
         rivi = lukija.nextLine();
+        assertEquals("organization = {Computer Science Department},", rivi);
+        rivi = lukija.nextLine();
         assertEquals("}", rivi);
     }
 
@@ -180,6 +215,8 @@ public class BibtexGeneratorTest extends TestCase {
         assertEquals("booktitle = {SIGCSE '11: Proceedings of the 42nd SIGCSE technical symposium on Computer science education},", rivi);
         rivi = lukija.nextLine();
         assertEquals("year = {2011},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("organization = {Computer Science Department},", rivi);
         rivi = lukija.nextLine();
         assertEquals("}", rivi);
 
@@ -212,6 +249,43 @@ public class BibtexGeneratorTest extends TestCase {
         assertEquals("year = {2004},", rivi);
         rivi = lukija.nextLine();
         assertEquals("publisher = {Addison-Wesley Professional},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("series = {Extreme Programming},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("address = {Backstreet 123},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("edition = {Edition 2.27},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("month = {January},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("note = {Best Book Ever},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("key = {SuperKey123},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("}", rivi);
+    }
+
+    @Test
+    public void testÄäkkösetBibtex() throws FileNotFoundException, Exception {
+        ArrayList<String[]> pt = new ArrayList<String[]>();
+        pt.add(ääkkösetParametrit);
+        alustaTestejaVarten(pt);
+        String rivi = lukija.nextLine();
+        assertEquals("@book{124,", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("author = {Kalle P\\\"{a}\\\"{a}talo},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("editor = {Kallekallekalle},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("title = {H\\\"{o}ylin Miehen Syksy},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("year = {1970},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("publisher = {WSOY},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("edition = {\\\"{A}mp\\\"{a}ri \\\"{O}ljy \\\"{a}iti :D},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("month = {February},", rivi);
         rivi = lukija.nextLine();
         assertEquals("}", rivi);
     }
