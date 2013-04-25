@@ -34,7 +34,6 @@ scenario "user can fill an inproceedings form", {
     }
  
     then 'the form has been sent', {
-        System.out.println(driver.getPageSource())
         driver.getPageSource().contains("Pekka Pouta").shouldBe true
     }
 }
