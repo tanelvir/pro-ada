@@ -45,6 +45,41 @@ scenario "user can view bibtex code when the form has been properly filled", {
 
 
 
+scenario "form is sent yaaaaaaaaaaaaaaaaay", {
+    given 'inproceedings form is selected', {
+        driver = new HtmlUnitDriver(true);
+        driver.get("http://localhost:8080");
+        element = driver.findElement(By.id("theSelect"));
+        Select clickThis = new Select(element);
+        clickThis.selectByValue("inproceedings");
+        element = driver.findElement(By.name("submit"));       
+        element.click();
+    }
+    when 'the required fields have not been filled', {
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='author']"));
+        element.sendKeys("Ihää");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='title']"));
+        element.sendKeys("Naurattaa");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='booktitle']"));
+        element.sendKeys("Tuulet");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='year']"));
+        element.sendKeys("1335");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='id']"));
+        element.sendKeys("9007");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
+        element.submit();
+    }
+    then 'the form has not been sent', {
+        driver.getPageSource().contains("Ih\\&quot;{a}\\&quot;{a}").shouldBe true
+    }
+}
+
+
+
+
+
+
+
 scenario "user cannot view bibtex code if some of the required fields are left blank", {
     given 'the inproceedings form has been chosen', {
         driver = new HtmlUnitDriver(true);
