@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.*;
+import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.*;
 
 public class BibtexGeneratorTest extends TestCase {
@@ -124,6 +125,18 @@ public class BibtexGeneratorTest extends TestCase {
         ArrayList<String[]> pt = new ArrayList<String[]>();
         BibtexGenerator BG = new BibtexGenerator(pt, sivuPrinter, true);
         assertNotNull("bibtexGenerator olio oli null", BG);
+    }
+
+    @Test
+    public void bibtexGeneraattorinLuonninYhteydessaLuodaanFiluPrinter() throws Exception {
+        BibtexGenerator BG = new BibtexGenerator(new ArrayList<String[]>(), null, true);
+        assertNotNull("filuPrinteriä ei luotu", BG.filuPrinter);
+    }
+
+    @Test
+    public void bibtexGeneraattorinLuonninYhteydessaLuodaanTekstiFilu() throws Exception {
+        BibtexGenerator BG = new BibtexGenerator(new ArrayList<String[]>(), null, true);
+        assertNotNull("filua ei luotu, johon printataan", BG.file);
     }
 
     @Test
@@ -266,7 +279,7 @@ public class BibtexGeneratorTest extends TestCase {
     }
 
     @Test
-    public void testÄäkkösetBibtex() throws FileNotFoundException, Exception {
+    public void testAakkosetBibtex() throws FileNotFoundException, Exception {
         ArrayList<String[]> pt = new ArrayList<String[]>();
         pt.add(ääkkösetParametrit);
         alustaTestejaVarten(pt);
