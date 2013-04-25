@@ -20,4 +20,4 @@ http://t-tanelvir.users.cs.helsinki.fi/jenkins/job/OhtuServlet/ kayttajatunnus: 
 
 
 Userssilla:
-http://t-anttkaik.users.cs.helsinki.fi/ohtuservlet/index.html
+http://t-anttkaik.users.cs.helsinki.fi/OhtuServlet2/index.html
