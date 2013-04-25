@@ -59,7 +59,6 @@ public class BibtexGenerator {
     public boolean testataanko;
 
     public BibtexGenerator(ArrayList<String[]> parametriTaulut, PrintWriter sivuPrinter, boolean testataanko) throws Exception {
-        
         this.testataanko = testataanko;
         this.sivuPrinter = sivuPrinter;
 
@@ -78,7 +77,6 @@ public class BibtexGenerator {
     }
 
     private void muodostaBibtexit(ArrayList<String[]> parametriTaulut) throws Exception {
-
         for (int i = 0; i < parametriTaulut.size(); i++) {
             // Viimeisen bibtex printin jälkeen printterit suljetaan
             if (i == parametriTaulut.size() - 1) {
@@ -90,6 +88,8 @@ public class BibtexGenerator {
     }
 
     private void alustaYhdenBibtexinParametrit(String[] parametrit) throws Exception {
+        // Tyhjennetään ensin vanhat kentät
+        alustaKentatTyhjijsi();
         // tyyppi = id, author, title, article jne
         this.Tyyppi = parametrit[0];
         for (int i = 1; i < parametrit.length; i++) {
@@ -249,7 +249,7 @@ public class BibtexGenerator {
         if (testataanko) {
             this.file = new File("testitiedosto.bib");
         } else {
-        this.file = new File("viitetiedosto.bib");
+            this.file = new File("viitetiedosto.bib");
         }
         System.out.println(file.getAbsolutePath());
     }
@@ -261,7 +261,31 @@ public class BibtexGenerator {
         this.Year = "2008";
         this.Publisher = "Prentice Hall";
     }
-    public void printFilu() {
-        
+
+    private void alustaKentatTyhjijsi() {
+        Tyyppi = "";
+        ID = "";
+        Author = "";
+        Title = "";
+        Publisher = "";
+        Address = "";
+        Journal = "";
+        Pages = "";
+        Booktitle = "";
+        Note = "";
+        Year = "";
+        Volume = "";
+        Number = "";
+        Month = "";
+        Key = "";
+        Series = "";
+        Edition = "";
+        Editor = "";
+        Organization = "";
+        Howpublished = "";
+        Chapter = "";
+        Type = "";
+        School = "";
+        Institution = "";
     }
 }
