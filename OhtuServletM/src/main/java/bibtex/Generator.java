@@ -20,17 +20,24 @@ public class Generator extends HttpServlet {
     TyyppiArrayList tAL = new TyyppiArrayList();
     PrintWriter out;
     
+    private static String poistaÄäkköset(String teksti) { 
+        String a = java.util.regex.Matcher.quoteReplacement("\\\"");
+        String tulos = teksti.replaceAll("ä", a+"{a}").replaceAll("Ä", a+"{A}");
+        tulos = tulos.replaceAll("ö", a+"{o}").replaceAll("Ö", a+"{O}");
+        return tulos;
+    }
+    
     private String[] muunnaParametrit(String tyyppi, Map<String,String[]> parameterMap) {//k
-        
-        
 	Set<Map.Entry<String,String[]>> parameterSet = parameterMap.entrySet();
         ArrayList<String> parametrit = new ArrayList<String>();
         parametrit.add(tyyppi);
         for (Entry<String, String[]> parameter : parameterSet) {
             if (parameter.getValue()[0].equals("")) continue;
             if (parameter.getKey().equals("tyyppi")) continue;
-            parametrit.add(parameter.getKey()+"@"+parameter.getValue()[0]);
-            System.out.println(parameter.getKey()+"@"+parameter.getValue()[0]);
+            String value = this.poistaÄäkköset(parameter.getValue()[0]);
+            //parameter.setValue(new String[] {parameter.getValue()[0].replaceAll(tyyppi, tyyppi));
+            parametrit.add(parameter.getKey()+"@"+value);
+            System.out.println(parameter.getKey()+"@"+value);
         }
         String[] tulos = new String[parametrit.size()];
         return parametrit.toArray(tulos);
@@ -40,6 +47,7 @@ public class Generator extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         //request.getreq
         String[] parametrit = muunnaParametrit(request.getParameter("tyyppi"), request.getParameterMap());
         out = response.getWriter();
