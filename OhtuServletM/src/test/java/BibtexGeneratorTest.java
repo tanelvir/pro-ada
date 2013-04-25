@@ -39,11 +39,11 @@ public class BibtexGeneratorTest extends TestCase {
     private void alustaMonenBibtexinTiedosto() throws FileNotFoundException {
         String[] taulu = new String[10];
         taulu[0] = "inproceedings";
-        taulu[1] = "VPL11";
+        taulu[1] = "ID@VPL11";
         taulu[2] = "author@Vihavainen, Arto and Paksula, Matti and Luukkainen, Matti";
         taulu[3] = "title@Extreme Apprenticeship Method in Teaching Programming for Beginners.";
-        taulu[4] = "year@2011";
-        taulu[5] = "booktitle@SIGCSE '11: Proceedings of the 42nd SIGCSE technical symposium on Computer science education";
+        taulu[4] = "booktitle@SIGCSE '11: Proceedings of the 42nd SIGCSE technical symposium on Computer science education";
+        taulu[5] = "year@2011";
         this.inproceedingsParametrit = taulu;
 
         String taulu2[] = new String[10];
@@ -82,6 +82,9 @@ public class BibtexGeneratorTest extends TestCase {
     }
 
     private void alustaTestejaVarten(ArrayList<String[]> pt) throws Exception {
+        File poistetaanEnsin = new File("testitiedosto.bib");
+        poistetaanEnsin.createNewFile();
+        poistetaanEnsin.delete();
         BibtexGenerator BG = new BibtexGenerator(pt, null, true);
 
         File testFilu = new File("testitiedosto.bib");
@@ -104,8 +107,6 @@ public class BibtexGeneratorTest extends TestCase {
 
     @Test
     public void testArticleGenerator() throws FileNotFoundException, Exception {
-        File poistetaanEnsin = new File("testitiedosto.bib");
-        poistetaanEnsin.delete();
         ArrayList<String[]> pt = new ArrayList<String[]>();
         pt.add(articleParametrit);
         alustaTestejaVarten(pt);
@@ -129,8 +130,6 @@ public class BibtexGeneratorTest extends TestCase {
 
     @Test
     public void testBookGenerator() throws FileNotFoundException, Exception {
-        File poistetaanEnsin = new File("testitiedosto.bib");
-        poistetaanEnsin.delete();
         ArrayList<String[]> pt = new ArrayList<String[]>();
         pt.add(bookParametrit);
         alustaTestejaVarten(pt);
@@ -144,6 +143,25 @@ public class BibtexGeneratorTest extends TestCase {
         assertEquals("year = {2004},", rivi);
         rivi = lukija.nextLine();
         assertEquals("publisher = {Addison-Wesley Professional},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("}", rivi);
+    }
+
+    @Test
+    public void testInproceedingsGenerator() throws FileNotFoundException, Exception {
+        ArrayList<String[]> pt = new ArrayList<String[]>();
+        pt.add(inproceedingsParametrit);
+        alustaTestejaVarten(pt);
+        String rivi = lukija.nextLine();
+        assertEquals("@inproceedings{VPL11,", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("author = {Vihavainen, Arto and Paksula, Matti and Luukkainen, Matti},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("title = {Extreme Apprenticeship Method in Teaching Programming for Beginners.},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("booktitle = {SIGCSE '11: Proceedings of the 42nd SIGCSE technical symposium on Computer science education},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("year = {2011},", rivi);
         rivi = lukija.nextLine();
         assertEquals("}", rivi);
     }

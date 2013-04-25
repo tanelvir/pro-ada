@@ -234,7 +234,6 @@ public class BibtexGenerator {
     private void luoFiluPrinter() {
 
         try {
-//            this.filuPrinter = new PrintWriter(new FileWriter(file));
             FileWriter fw = new FileWriter(file, true);
             this.filuPrinter = new PrintWriter(fw);
         } catch (IOException e) {

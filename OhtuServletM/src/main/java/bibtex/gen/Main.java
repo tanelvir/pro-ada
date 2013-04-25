@@ -36,31 +36,7 @@ public class Main {
         pt.add(taulu2);
         pt.add(taulu3);
         
-        BibtexGenerator bg = new BibtexGenerator(pt, null, true);
+        BibtexGenerator bg = new BibtexGenerator(pt, null, false);
         
     }
 }
-
-
-
-//@ARTICLE{CBH91,
-//    author = {Allan Collins and John Seely Brown and Ann Holum},
-//    title = {Cognitive apprenticeship: making thinking visible},
-//    journal = {American Educator},
-//    year = {1991},
-//    volume = {6},
-//    pages = {38--46}
-    
-    
-    
-    
-    
-//@article{W04,
-//author = {Whittington, Keith J.},
-//title = {Infusing active learning into introductory programming courses},
-//journal = {J. Comput. Small Coll.},
-//year = {2004},
-//volume = {19},
-//number = {5},
-//address = {USA},
-//}
