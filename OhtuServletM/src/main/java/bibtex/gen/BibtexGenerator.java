@@ -3,17 +3,6 @@ package bibtex.gen;
 import bibtex.gens.ArticleGenerator;
 import bibtex.gens.InproceedingsGenerator;
 import bibtex.gens.BookGenerator;
-import bibtex.gens.BookletGenerator;
-import bibtex.gens.ConferenceGenerator;
-import bibtex.gens.InbookGenerator;
-import bibtex.gens.IncollectionGenerator;
-import bibtex.gens.ManualGenerator;
-import bibtex.gens.MastersthesisGenerator;
-import bibtex.gens.MiscGenerator;
-import bibtex.gens.PhdthesisGenerator;
-import bibtex.gens.ProceedingsGenerator;
-import bibtex.gens.TechreportGenerator;
-import bibtex.gens.UnpublishedGenerator;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -47,11 +36,6 @@ public class BibtexGenerator {
     public String Edition = "";
     public String Editor = "";
     public String Organization = "";
-    public String Howpublished = "";
-    public String Chapter = "";
-    public String Type = "";
-    public String School = "";
-    public String Institution = "";
     PrintWriter sivuPrinter;
     PrintWriter filuPrinter;
     public File file;
@@ -141,16 +125,6 @@ public class BibtexGenerator {
             this.Editor = arvo;
         } else if (tyyppi.equals("organization")) {
             this.Organization = arvo;
-        } else if (tyyppi.equals("howpublished")) {
-            this.Howpublished = arvo;
-        } else if (tyyppi.equals("chapter")) {
-            this.Chapter = arvo;
-        } else if (tyyppi.equals("type")) {
-            this.Type = arvo;
-        } else if (tyyppi.equals("school")) {
-            this.School = arvo;
-        } else if (tyyppi.equals("institution")) {
-            this.Institution = arvo;
         }
     }
 
@@ -192,41 +166,8 @@ public class BibtexGenerator {
         } else if (Tyyppi.equals("book")) {
             BookGenerator BG = new BookGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
-        } else if (Tyyppi.equals("booklet")) {
-            BookletGenerator BG = new BookletGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("conference")) {
-            ConferenceGenerator BG = new ConferenceGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("inbook")) {
-            InbookGenerator BG = new InbookGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("incollection")) {
-            IncollectionGenerator BG = new IncollectionGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
         } else if (Tyyppi.equals("inproceedings")) {
             InproceedingsGenerator BG = new InproceedingsGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("manual")) {
-            ManualGenerator BG = new ManualGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("mastersthesis")) {
-            MastersthesisGenerator BG = new MastersthesisGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("misc")) {
-            MiscGenerator BG = new MiscGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("phdthesis")) {
-            PhdthesisGenerator BG = new PhdthesisGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("proceedings")) {
-            ProceedingsGenerator BG = new ProceedingsGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("techreport")) {
-            TechreportGenerator BG = new TechreportGenerator(filuPrinter, sivuPrinter, this);
-            BG.generoi();
-        } else if (Tyyppi.equals("unpublished")) {
-            UnpublishedGenerator BG = new UnpublishedGenerator(filuPrinter, sivuPrinter, this);
             BG.generoi();
         }
     }
@@ -242,9 +183,6 @@ public class BibtexGenerator {
     }
 
     private void luoTextFile() {
-//        File dir = new File("/cs/fs/home/joeniemi/GithubProjects/pro-ada/BibtextGeneraattori");
-//        File dir = new File("/Bibtexs");
-//        dir.mkdirs(); // tekee polun (siis kansiot yms) jos niitä ei ole'
         if (testataanko) {
             this.file = new File("testitiedosto.bib");
         } else {
@@ -281,10 +219,5 @@ public class BibtexGenerator {
         Edition = "";
         Editor = "";
         Organization = "";
-        Howpublished = "";
-        Chapter = "";
-        Type = "";
-        School = "";
-        Institution = "";
     }
 }

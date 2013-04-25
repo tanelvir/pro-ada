@@ -25,7 +25,7 @@ public class BibtexGeneratorTest extends TestCase {
 
     private Scanner testiLukija;
     // Monen bibtexin parametritaulut
-    private ArrayList<String[]> parametriTaulut = new ArrayList<String[]>();
+    private ArrayList<String[]> monenBibtexinTaulut = new ArrayList<String[]>();
     private String[] articleParametrit = new String[25];
     private String[] bookParametrit = new String[25];
     private String[] inproceedingsParametrit = new String[25];
@@ -66,9 +66,9 @@ public class BibtexGeneratorTest extends TestCase {
         taulu3[5] = "publisher@Addison-Wesley Professional";
         this.bookParametrit = taulu3;
 
-        parametriTaulut.add(taulu);
-        parametriTaulut.add(taulu2);
-        parametriTaulut.add(taulu3);
+        monenBibtexinTaulut.add(taulu);
+        monenBibtexinTaulut.add(taulu2);
+        monenBibtexinTaulut.add(taulu3);
     }
 
     @Override
@@ -162,6 +162,56 @@ public class BibtexGeneratorTest extends TestCase {
         assertEquals("booktitle = {SIGCSE '11: Proceedings of the 42nd SIGCSE technical symposium on Computer science education},", rivi);
         rivi = lukija.nextLine();
         assertEquals("year = {2011},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("}", rivi);
+    }
+
+    @Test
+    public void MonenBibtexinTiedosto() throws FileNotFoundException, Exception {
+        alustaTestejaVarten(monenBibtexinTaulut);
+        // Inproceedings
+        String rivi = lukija.nextLine();
+        assertEquals("@inproceedings{VPL11,", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("author = {Vihavainen, Arto and Paksula, Matti and Luukkainen, Matti},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("title = {Extreme Apprenticeship Method in Teaching Programming for Beginners.},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("booktitle = {SIGCSE '11: Proceedings of the 42nd SIGCSE technical symposium on Computer science education},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("year = {2011},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("}", rivi);
+
+        // Article
+        rivi = lukija.nextLine();
+        assertEquals("@article{CBH91,", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("author = {Allan Collins and John Seely Brown and Ann Holum},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("title = {Cognitive apprenticeship: making thinking visible},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("journal = {American Educator},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("year = {1991},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("volume = {6},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("pages = {38--46},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("}", rivi);
+
+        // Book
+        rivi = lukija.nextLine();
+        assertEquals("@book{BA04,", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("author = {Beck, Kent and Andres, Cynthia},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("title = {Extreme Programming Explained: Embrace Change (2nd Edition)},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("year = {2004},", rivi);
+        rivi = lukija.nextLine();
+        assertEquals("publisher = {Addison-Wesley Professional},", rivi);
         rivi = lukija.nextLine();
         assertEquals("}", rivi);
     }
