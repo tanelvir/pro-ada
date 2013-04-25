@@ -36,8 +36,8 @@ public class BibtexGenerator {
     public String Edition = "";
     public String Editor = "";
     public String Organization = "";
-    PrintWriter sivuPrinter;
-    PrintWriter filuPrinter;
+    public PrintWriter sivuPrinter;
+    public PrintWriter filuPrinter;
     public File file;
     public boolean suljetaanko = false;
     public boolean testataanko;

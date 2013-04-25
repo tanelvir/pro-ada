@@ -1,12 +1,14 @@
 package bibtex;
 
 import bibtex.gen.BibtexGenerator;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,36 +18,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Generator extends HttpServlet {
-    
-    TyyppiArrayList tAL = new TyyppiArrayList();
+
+    TyyppiArrayList tyyppiArrayList = new TyyppiArrayList();
     PrintWriter out;
     StringWriter bibtexi;
     BibtexGenerator bibi;
-    
-//    private static String poistaÄäkköset(String teksti) { 
-//        String a = java.util.regex.Matcher.quoteReplacement("\\\"");
-//        String tulos = teksti.replaceAll("ä", a+"{a}").replaceAll("Ä", a+"{A}");
-//        tulos = tulos.replaceAll("ö", a+"{o}").replaceAll("Ö", a+"{O}");
-//        return tulos;
-//    }
-    
-    private String[] muunnaParametrit(String tyyppi, Map<String,String[]> parameterMap) {//k
-	Set<Map.Entry<String,String[]>> parameterSet = parameterMap.entrySet();
+
+    private String[] muunnaParametrit(String tyyppi, Map<String, String[]> parameterMap) {//k
+        Set<Map.Entry<String, String[]>> parameterSet = parameterMap.entrySet();
         ArrayList<String> parametrit = new ArrayList<String>();
         parametrit.add(tyyppi);
         for (Entry<String, String[]> parameter : parameterSet) {
-            if (parameter.getValue()[0].equals("")) continue;
-            if (parameter.getKey().equals("tyyppi")) continue;
+            if (parameter.getValue()[0].equals("")) {
+                continue;
+            }
+            if (parameter.getKey().equals("tyyppi")) {
+                continue;
+            }
             String value = parameter.getValue()[0];
             //parameter.setValue(new String[] {parameter.getValue()[0].replaceAll(tyyppi, tyyppi));
-            parametrit.add(parameter.getKey()+"@"+value);
-            System.out.println(parameter.getKey()+"@"+value);
+            parametrit.add(parameter.getKey() + "@" + value);
+            System.out.println(parameter.getKey() + "@" + value);
         }
         String[] tulos = new String[parametrit.size()];
         return parametrit.toArray(tulos);
     }
-    
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -53,97 +51,51 @@ public class Generator extends HttpServlet {
         //request.getreq
         String[] parametrit = muunnaParametrit(request.getParameter("tyyppi"), request.getParameterMap());
         out = response.getWriter();
-        
+
         //jos ID puuttuu tai on jo käytössä
         //syötä ID uudelleen eli palaa osittain täytettyyn lomakkeeseen
-        if (!tAL.add(parametrit)) {
+        if (!tyyppiArrayList.add(parametrit)) {
             out.println("ID on jo käytössä!");
             return;
         }
         bibtexi = new StringWriter();
-        PrintWriter joenTeksti2 = new PrintWriter(bibtexi);
+        PrintWriter sivuPrinter = new PrintWriter(bibtexi);
         try {
-            bibi = new BibtexGenerator(tAL, joenTeksti2, false);
+            bibi = new BibtexGenerator(tyyppiArrayList, sivuPrinter, false);
 
-            } catch (Exception ex) {
-                out.println("pakollinen kenttä puuttuu!");
-                System.out.println("pakollinen kenttä puuttui. poisto = "+tAL.remove(tAL.size()-1));
-                return;
-            }
+        } catch (Exception ex) {
+            out.println("pakollinen kenttä puuttuu!");
+            System.out.println("pakollinen kenttä puuttui. poisto = " + tyyppiArrayList.remove(tyyppiArrayList.size() - 1));
+            return;
+        }
         try {
             printtaaHtml();
-        } finally {            
+        } finally {
             out.close();
         }
     }
-    
-    
-    
-    private void printtaaHtml() {
-        out.println("<!DOCTYPE html>\n" +
-"<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +
-"<html>\n" +
-"    <head>\n" +
-"        <title>BibTeX Generator</title>\n" +
-"        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n" +
-"\n" +
-"        <script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js\"></script>\n" +
-"        <script type=\"text/javascript\">\n" +
-"            \n" +
-"            \n" +
-"            function muutos(){\n" +
-"                var value = $('#theSelect option:selected').attr('value');\n" +
-"                var completeUrl = value+'.html';\n" +
-"                $(\"#myform\").attr(\"action\", completeUrl);\n" +
-"            }\n" +
-"\n" +
-"        </script>\n" +
-"\n" +
-"    </head>\n" +
-"    <body>\n" +
-"        <h1>\n" +
-"            BibTeX Generator\n" +
-"        </h1>\n" +
-"\n" +
-"        <!-- Pudotusvalikko lomakkeen valitsemiseksi !-->\n" +
-"        <div>\n" +
-"            <br>\n" +
-"            <p>Choose a form type:</p>\n" +
-"            <Form id=\"myform\" action=\"article.html\" Method =\"post\" accept-charset=\"utf-8\">\n" +
-"\n" +
-"                <select id=\"theSelect\" onchange=\"muutos()\">\n" +
-"                    <option value=\"article\">Article</option>\n" +
-"                    <option value=\"book\">Book</option>\n" +
-"                    <option value=\"inproceedings\">Inproceedings</option>\n" +
-"                </select>\n" +
-"\n" +
-"                <Input type = 'Submit' Name = 'submit' Value = 'Choose'>\n" +
-"\n" +
-"            </form>"
-                    + "<br><br>\n" +
-"        </div>\n" +
 
-"    </body>\n" +
-"</html>");
-            
+    private void printtaaHtml() throws IOException {
+        HtmlContents c = new HtmlContents();
+        out.println(c.CONTENT);
+
         printtaaAlkutag();
-            
+
         out.println(bibtexi.toString());
-        
+
         printtaaLopputag();
-        
+
         printtaaPolku();
     }
-    
-    
+
     private void printtaaAlkutag() {
         out.println("<form name=\"bibtex\">\n"
-                    + "            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
+                + "            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
     }
-    
+
     private void printtaaLopputag() {
         out.println("</textarea>\n"
-                    + "        </form>");
+                + "        </form>");
     }
 
     private void printtaaPolku() {
