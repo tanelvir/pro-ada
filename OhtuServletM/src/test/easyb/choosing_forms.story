@@ -19,18 +19,20 @@ scenario "user can fill an inproceedings form", {
     }
     when 'the form has been filled correctly', {
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='author']"));
-        element.sendKeys("Pekka Pouta");
+        element.sendKeys("Mari Herkku");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='title']"));
-        element.sendKeys("Ilmoja pidelty");
+        element.sendKeys("Leivonnan raamattu");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='booktitle']"));
-        element.sendKeys("Uudet tuulet");
+        element.sendKeys("Herkut");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='year']"));
-        element.sendKeys("1995");
+        element.sendKeys("2001");
+        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='id']"));
+        element.sendKeys("3");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
         element.submit();
     }
     then 'the form has been sent', {
-        driver.getPageSource().contains("Pekka Pouta").shouldBe true
+        driver.getPageSource().contains("Mari Herkku").shouldBe true
     }
 }
 
@@ -45,15 +47,17 @@ scenario "user can fill an article form", {
         element.click();
     }
     when 'the form has been filled correctly', {
-        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='author']"));
+        element = driver.findElement(By.xpath("//form[@name='article']//input[@name='author']"));
         element.sendKeys("Kukka Keto");
-        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='title']"));
+        element = driver.findElement(By.xpath("//form[@name='article']//input[@name='title']"));
         element.sendKeys("Ihana kauneus");
-        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='journal']"));
+        element = driver.findElement(By.xpath("//form[@name='article']//input[@name='journal']"));
         element.sendKeys("Klassikot");
-        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='year']"));
+        element = driver.findElement(By.xpath("//form[@name='article']//input[@name='year']"));
         element.sendKeys("2007");
-        element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
+        element = driver.findElement(By.xpath("//form[@name='article']//input[@name='id']"));
+        element.sendKeys("4");
+        element = driver.findElement(By.xpath("//form[@name='article']//input[@type='submit']"));
         element.submit();
     }
     then 'the form has been sent', {
