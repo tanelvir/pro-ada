@@ -5,6 +5,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
 
+
+
 description 'User can view bibtex code'
 
 scenario "user can view bibtex code when the form has been properly filled", {
@@ -43,8 +45,6 @@ scenario "user can view bibtex code when the form has been properly filled", {
 
 
 
-
-
 scenario "user cannot view bibtex code if some of the required fields are left blank", {
     given 'the inproceedings form has been chosen', {
         driver = new HtmlUnitDriver(true);
@@ -70,7 +70,6 @@ scenario "user cannot view bibtex code if some of the required fields are left b
          driver.getPageSource().contains("pakollinen kenttä puuttuu!").shouldBe true
     }
 }
-
 
 
 
