@@ -30,3 +30,15 @@ scenario "user cannot view bibtex code", {
         
     }
 }
+
+scenario "correctly filled form with special characters is sent", {
+    given 'inproceedings form is selected', {
+        
+    }
+    when 'the required fields with special letters have been filled', {
+        
+    }
+    then 'bibtex code with special letters is generated correctly', {
+        
+    }
+}
