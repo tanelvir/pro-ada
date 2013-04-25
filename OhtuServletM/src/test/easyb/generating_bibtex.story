@@ -5,6 +5,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
 
+
+
 description 'User can view bibtex code'
 
 scenario "user can view bibtex code when the form has been properly filled", {
@@ -43,9 +45,7 @@ scenario "user can view bibtex code when the form has been properly filled", {
 
 
 
-
-
-scenario "form is sent yaaaaaaaaaaaaaaaaay", {
+scenario "bibtex is generated correctly with special characters", {
     given 'inproceedings form is selected', {
         driver = new HtmlUnitDriver(true);
         driver.get("http://localhost:8080");
@@ -55,7 +55,7 @@ scenario "form is sent yaaaaaaaaaaaaaaaaay", {
         element = driver.findElement(By.name("submit"));       
         element.click();
     }
-    when 'the required fields have not been filled', {
+    when 'the form has been filled with special characters', {
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='author']"));
         element.sendKeys("Ihää");
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@name='title']"));
@@ -69,11 +69,10 @@ scenario "form is sent yaaaaaaaaaaaaaaaaay", {
         element = driver.findElement(By.xpath("//form[@name='inproceedings']//input[@type='submit']"));
         element.submit();
     }
-    then 'the form has not been sent', {
+    then 'bibtex is generated correctly', {
         driver.getPageSource().contains("Ih\\&quot;{a}\\&quot;{a}").shouldBe true
     }
 }
-
 
 
 
@@ -105,7 +104,6 @@ scenario "user cannot view bibtex code if some of the required fields are left b
          driver.getPageSource().contains("pakollinen kenttä puuttuu!").shouldBe true
     }
 }
-
 
 
 

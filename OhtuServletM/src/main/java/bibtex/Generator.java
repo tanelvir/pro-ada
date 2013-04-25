@@ -61,12 +61,12 @@ public class Generator extends HttpServlet {
             return;
         }
         bibtexi = new StringWriter();
-        PrintWriter joenTeksti2 = new PrintWriter(bibtexi);
+        PrintWriter stringiinKirjoittava = new PrintWriter(bibtexi);
         try {
-            bibi = new BibtexGenerator(tAL, joenTeksti2, false);
+            bibi = new BibtexGenerator(tAL, stringiinKirjoittava, false);
 
             } catch (Exception ex) {
-                out.println("pakollinen kenttä puuttuu!");
+                out.println("Pakollinen kenttä puuttuu!");
                 System.out.println("pakollinen kenttä puuttui. poisto = "+tAL.remove(tAL.size()-1));
                 return;
             }
