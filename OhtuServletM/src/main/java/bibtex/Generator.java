@@ -19,6 +19,7 @@ public class Generator extends HttpServlet {
     
     TyyppiArrayList tAL = new TyyppiArrayList();
     PrintWriter out;
+    BibtexGenerator bibi;
     
     private static String poistaÄäkköset(String teksti) { 
         String a = java.util.regex.Matcher.quoteReplacement("\\\"");
@@ -61,7 +62,7 @@ public class Generator extends HttpServlet {
         StringWriter joenTeksti = new StringWriter();
         PrintWriter joenTeksti2 = new PrintWriter(joenTeksti);
         try {
-            BibtexGenerator bibi = new BibtexGenerator(tAL, joenTeksti2, false);
+            bibi = new BibtexGenerator(tAL, joenTeksti2, false);
 
             } catch (Exception ex) {
                 out.println("pakollinen kenttä puuttuu!");
@@ -132,6 +133,8 @@ public class Generator extends HttpServlet {
         
         printtaaLopputag();
         
+        printtaaPolku();
+        
         } finally {            
             out.close();
         }
@@ -147,11 +150,11 @@ public class Generator extends HttpServlet {
                     + "        </form>");
     }
 
-//    public void printtaaPolku() {
-//        out.println("POLKU : " + bg.file.getAbsolutePath());
-//        out.println("<a href=\"" + bg.file.getAbsolutePath() + "\">Bibtex-tiedoston latauslinkki</a>");
-//        //<a href="default.asp">HTML Tutorial</a>
-//    }
+    public void printtaaPolku() {
+        out.println("POLKU : " + bibi.file.getAbsolutePath());
+        out.println("<a href=\"" + bibi.file.getAbsolutePath() + "\">Bibtex-tiedoston latauslinkki</a>");
+        //<a href="default.asp">HTML Tutorial</a>
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
