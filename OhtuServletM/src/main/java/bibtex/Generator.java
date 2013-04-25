@@ -19,14 +19,15 @@ public class Generator extends HttpServlet {
     
     TyyppiArrayList tAL = new TyyppiArrayList();
     PrintWriter out;
+    StringWriter bibtexi;
     BibtexGenerator bibi;
     
-    private static String poistaÄäkköset(String teksti) { 
-        String a = java.util.regex.Matcher.quoteReplacement("\\\"");
-        String tulos = teksti.replaceAll("ä", a+"{a}").replaceAll("Ä", a+"{A}");
-        tulos = tulos.replaceAll("ö", a+"{o}").replaceAll("Ö", a+"{O}");
-        return tulos;
-    }
+//    private static String poistaÄäkköset(String teksti) { 
+//        String a = java.util.regex.Matcher.quoteReplacement("\\\"");
+//        String tulos = teksti.replaceAll("ä", a+"{a}").replaceAll("Ä", a+"{A}");
+//        tulos = tulos.replaceAll("ö", a+"{o}").replaceAll("Ö", a+"{O}");
+//        return tulos;
+//    }
     
     private String[] muunnaParametrit(String tyyppi, Map<String,String[]> parameterMap) {//k
 	Set<Map.Entry<String,String[]>> parameterSet = parameterMap.entrySet();
@@ -35,7 +36,7 @@ public class Generator extends HttpServlet {
         for (Entry<String, String[]> parameter : parameterSet) {
             if (parameter.getValue()[0].equals("")) continue;
             if (parameter.getKey().equals("tyyppi")) continue;
-            String value = this.poistaÄäkköset(parameter.getValue()[0]);
+            String value = parameter.getValue()[0];
             //parameter.setValue(new String[] {parameter.getValue()[0].replaceAll(tyyppi, tyyppi));
             parametrit.add(parameter.getKey()+"@"+value);
             System.out.println(parameter.getKey()+"@"+value);
@@ -59,8 +60,8 @@ public class Generator extends HttpServlet {
             out.println("ID on jo käytössä!");
             return;
         }
-        StringWriter joenTeksti = new StringWriter();
-        PrintWriter joenTeksti2 = new PrintWriter(joenTeksti);
+        bibtexi = new StringWriter();
+        PrintWriter joenTeksti2 = new PrintWriter(bibtexi);
         try {
             bibi = new BibtexGenerator(tAL, joenTeksti2, false);
 
@@ -70,7 +71,16 @@ public class Generator extends HttpServlet {
                 return;
             }
         try {
-            out.println("<!DOCTYPE html>\n" +
+            printtaaHtml();
+        } finally {            
+            out.close();
+        }
+    }
+    
+    
+    
+    private void printtaaHtml() {
+        out.println("<!DOCTYPE html>\n" +
 "<!-- Aloitussivu, jolta käyttäjä valitsee haluamansa lomakepohjan !-->\n" +
 "<html>\n" +
 "    <head>\n" +
@@ -118,28 +128,25 @@ public class Generator extends HttpServlet {
             
         printtaaAlkutag();
             
-        out.println(joenTeksti.toString());
+        out.println(bibtexi.toString());
         
         printtaaLopputag();
         
         printtaaPolku();
-        
-        } finally {            
-            out.close();
-        }
     }
     
-    public void printtaaAlkutag() {
+    
+    private void printtaaAlkutag() {
         out.println("<form name=\"bibtex\">\n"
                     + "            <textarea name=\"bibtex\" rows=\"40\" cols=\"80\">");
     }
     
-    public void printtaaLopputag() {
+    private void printtaaLopputag() {
         out.println("</textarea>\n"
                     + "        </form>");
     }
 
-    public void printtaaPolku() {
+    private void printtaaPolku() {
         out.println("POLKU : " + bibi.file.getAbsolutePath());
         out.println("<a href=\"" + bibi.file.getAbsolutePath() + "\">Bibtex-tiedoston latauslinkki</a>");
         //<a href="default.asp">HTML Tutorial</a>
