@@ -9,7 +9,7 @@ description 'user can fill form'
 
 scenario "user can fill an inproceedings form", {
     given 'inproceedings form is selected', {
-        driver = new HtmlUnitDriver();
+        driver = new HtmlUnitDriver(true);
         driver.get("http://localhost:8080");
         element = driver.findElement(By.id("theSelect"));
         Select clickThis = new Select(element);
@@ -27,11 +27,13 @@ scenario "user can fill an inproceedings form", {
         element.sendKeys("Uudet tuulet");
         element = driver.findElement(By.name("year"));
         element.sendKeys("1995");
-        element = driver.findElement(By.name("Send"));
+        element = driver.findElement(By.name("id"));
+        element.sendKeys("1");
+        element = driver.findElement(By.name("submit"));
         element.submit();
     }
  
     then 'the form has been sent', {
-        driver.getPageSource().contains("POLKU :").shouldBe true
+        driver.getPageSource().contains("polku").shouldBe true
     }
 }
