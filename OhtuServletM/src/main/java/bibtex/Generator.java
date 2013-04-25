@@ -114,18 +114,7 @@ public class Generator extends HttpServlet {
 "                <select id=\"theSelect\" onchange=\"muutos()\">\n" +
 "                    <option value=\"article\">Article</option>\n" +
 "                    <option value=\"book\">Book</option>\n" +
-"                    <option value=\"booklet\">Booklet</option>\n" +
-"                    <option value=\"conference\">Conference</option>\n" +
-"                    <option value=\"inbook\">Inbook</option>\n" +
-"                    <option value=\"incollection\">Incollection</option>\n" +
 "                    <option value=\"inproceedings\">Inproceedings</option>\n" +
-"                    <option value=\"manual\">Manual</option>\n" +
-"                    <option value=\"mastersthesis\">Master's Thesis</option>\n" +
-"                    <option value=\"misc\">Misc</option>\n" +
-"                    <option value=\"phdthesis\">Ph.D. Thesis</option>\n" +
-"                    <option value=\"proceedings\">Proceedings</option>\n" +
-"                    <option value=\"techreport\">Techreport</option>\n" +
-"                    <option value=\"unpublished\">Unpublished</option>\n" +
 "                </select>\n" +
 "\n" +
 "                <Input type = 'Submit' Name = 'submit' Value = 'Choose'>\n" +
